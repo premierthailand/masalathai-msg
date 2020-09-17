@@ -1,4 +1,4 @@
-<?php include 'config.php';?>
+<?php include 'pages/config.php';?>
 
 <!doctype html>
 <html lang="en">
@@ -18,15 +18,14 @@
   <link href="css/main.css" rel="stylesheet" />
   <link href="css/datetimepicker.css" rel="stylesheet" />
 </head>
-<br><br><br><br>
-<civ class="container">
+<div class="container">
     <div class="content">
         <div class="container-fluid">
-            <div class="row">
+            <div class="row login-margin">
                 <div class="col-md-4">
                 </div>
                 <div class="col-md-4">
-                    <form id="RegisterValidation" action="" method="" novalidate="novalidate">
+                    <form id="RegisterValidation" action="./pages/dashboard" method="post" novalidate="novalidate">
                         <div class="card ">
                         <div class="card-header card-header-primary card-header-icon ">
                             <div class="card-icon">
@@ -36,7 +35,7 @@
                         </div>
                         <div class="card-body ">
                             <div class="form-group bmd-form-group">
-                            <input type="email" class="form-control" id="exampleEmail" required="true" aria-required="true" placeholder="Email Address *">
+                            <input type="email" class="form-control" id="exampleEmail" required="true" name="email" aria-required="true" placeholder="Email Address *">
                             </div>
                             <div class="form-group bmd-form-group">
                             <input type="password" class="form-control" id="examplePassword" required="true" name="password" aria-required="true" placeholder="Email Address *">
@@ -59,5 +58,3 @@
         </div>
     </div>
 </div>
-
-<?php include 'footer.php';?>

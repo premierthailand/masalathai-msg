@@ -1,10 +1,20 @@
-<?php $activeIndex = 'active';?>
-<?php include 'header.php';?>
+<?php $activeMsg = 'active'; ?>
+<?php $pageName = 'Delivery Details'; ?>
+<?php include 'header.php'; ?>
+
 <div class="content">
-        <div class="container-fluid">
-        <!-- <button type="btn" class="btn btn-success">+ Add</button> -->
-            <div class="card col-md-12" style="padding:15px">
-                <div class="row">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons" style="padding-left:4px;">directions_bikes</i>
+                        </div>
+                        <h4 class="card-title">Update Delivery</h4>
+                    </div>
+                    <div class="card-body">
+                    <div class="row">
                     <div class="col-md-6">
                         <!-- Location -->
                         <div class="form-group">
@@ -28,14 +38,8 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Comment -->
+                        <!-- Messenger   -->
                         <div class="form-group">
-                            <label for="inputComment" class="bmd-label-floating">Comment</label>
-                            <input type="text" class="form-control" id="inputComment">
-                        </div>
-                        <!-- Comment -->
-                        <div class="form-group">
-                            <label for="inputComment" class="bmd-label-floating">Comment</label>
                             <select class="form-control" id="exampleSelect1">
                                 <option>=== Select Messenger ===</option>
                                 <option>Messenger A</option>
@@ -43,11 +47,13 @@
                                 <option>Messenger C</option>
                             </select>
                         </div>
+                        <br/>
                         <!-- DatePicker -->
                         <div class="form-group">
                             <label class="label-control">Datetime Picker</label>
                             <input type="text" class="form-control datetimepicker" value=""/>
                         </div>
+                        <br/>
                         <!-- Status -->
                         <div class="form-group">
                             <div class="form-check form-check-radio">
@@ -83,34 +89,24 @@
                             <label for="myfile" type="btn" class="btn btn-info">Upload Image</label>
                             <input  id="myfile" class="btn btn-primary" type="file" value="test">
                         </div>
-
+                        <!-- Comment -->
+                        <div class="form-group">
+                            <label for="inputComment" class="bmd-label-floating">Comment</label>
+                            <textarea type="text" class="form-control" id="inputComment" rows="3"></textarea>
+                        </div>
                         <!-- Save -->
                         <div class="form-group">
-                            <a href="./index.php">
+                            <a href="./list.php">
                                 <button type="btn" class="btn btn-primary">Save</button>
                             </a>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="">
-                <div class="col-lg-6 col-md-6">
-                
-
-                        
-                        
-
-                        
-
-
                     </div>
                 </div>
             </div>
-
-
-            </div>
         </div>
+    </div>
 </div>
-      
-<?php include 'footer.php';?>
+
+<?php include 'footer.php'; ?>
