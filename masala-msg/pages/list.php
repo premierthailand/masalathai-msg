@@ -8,14 +8,15 @@
         <div class="card">
           <div class="card-header card-header-primary card-header-icon">
             <div class="card-icon">
-              <i class="material-icons">assignment</i>
+              <i class="material-icons">library_books</i>
             </div>
-            <h4 class="card-title">Delivery list</h4>
+            <h4 class="card-title">Delivery List</h4>
           </div>
           <div class="card-body">
+          <form action="" method="get">
           <div class="row col-md-6" style="padding-left:15px;">
               <div class="form-group col-md-3">
-                <select class="form-control" id="exampleSelect1">
+                <select class="form-control" id="exampleSelect1" name="delivery-list-year">
                   <option>=== Year ===</option>
                   <option>2020</option>
                   <option>2019</option>
@@ -31,7 +32,7 @@
                 </select>
               </div>
               <div class="form-group col-md-3">
-                <select class="form-control" id="exampleSelect1">
+                <select class="form-control" id="exampleSelect1" name="delivery-list-month">
                   <option>=== Month ===</option>
                   <option>1</option>
                   <option>2</option>
@@ -50,16 +51,16 @@
               <div class="navbar-form col-md-6">
                 <span class="bmd-form-group">
                   <div class="input-group no-border" style="margin-top: 8px;">
-                    <input type="text" value="" class="form-control" style="margin-top:5px;margin-right:10px;" placeholder="Search...">
+                    <input type="text" value="" name="delivery-list-search" class="form-control" style="margin-top:5px;margin-right:10px;" placeholder="Search...">
                     <button type="submit" class="btn btn-white btn-round btn-just-icon">
                       <i class="material-icons">search</i>
                       <div class="ripple-container"></div>
                     </button>
-                  </div>
-                </span>
-              </div>
+                </div>
+              </span>
             </div>
-            
+          </div>
+          </form>  
             
             
             <div class="table-responsive">
@@ -103,15 +104,21 @@
                     <td>-</td>
                     <td>15/9/2020 14:00</td>
                     <td class="td-actions text-right">
+                    <a href="list?img=<?php echo "";?>">
                       <button type="button" rel="tooltip" class="btn btn-info" data-original-title="" title="">
                         <i class="material-icons">image_search</i>
                       </button>
+                    </a>
+                    <a href="list?edit=<?php echo "";?>">
                       <button type="button" rel="tooltip" class="btn btn-success" data-original-title="" title="">
                         <i class="material-icons">edit</i>
                       </button>
+                    </a>
+                    <a href="list?delete=<?php echo "";?>">
                       <button type="button" rel="tooltip" class="btn btn-danger" data-original-title="" title="">
                         <i class="material-icons">close</i>
                       </button>
+                    </a>
                     </td>
                   </tr>
                   <tr>

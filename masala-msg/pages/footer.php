@@ -46,7 +46,6 @@
         <script src="../js/material-dashboard.js?v=2.1.2" type="text/javascript"></script>
 
         <script src="../js/main.js"></script>
-        <script src="../demo/demo.js"></script>
         </body>
 
 </html>

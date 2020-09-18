@@ -5,7 +5,7 @@
             <div class="col-lg-3 col-md-6 col-sm-6">
             <a href="location">
               <div class="card card-stats">
-                <div class="card-header card-header-success card-header-icon">
+                <div class="card-header card-header-masala card-header-icon">
                   <div class="card-icon">
                     <i class="material-icons">apartment</i>
                   </div>
@@ -26,7 +26,7 @@
             <div class="col-lg-3 col-md-6 col-sm-6">
             <a href="list">
               <div class="card card-stats">
-                <div class="card-header card-header-warning card-header-icon">
+                <div class="card-header card-header-masala card-header-icon">
                   <div class="card-icon">
                     <i class="material-icons">library_books</i>
                   </div>
@@ -44,9 +44,9 @@
               </a>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6">
-            <a href="messenger">
+            <a href="detail">
               <div class="card card-stats">
-                <div class="card-header card-header-danger card-header-icon">
+                <div class="card-header card-header-masala card-header-icon">
                   <div class="card-icon">
                     <i class="material-icons">library_add</i>
                   </div>
@@ -66,7 +66,7 @@
             <div class="col-lg-3 col-md-6 col-sm-6">
             <a href="report">
               <div class="card card-stats">
-                <div class="card-header card-header-icon">
+                <div class="card-header card-header-masala card-header-icon">
                   <div class="card-icon">
                     <i class="material-icons">person</i>
                   </div>

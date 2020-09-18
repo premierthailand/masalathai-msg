@@ -13,10 +13,12 @@
   <!--     Fonts and icons     -->
   <link href="../css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="../css/family-roboto.css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- Material Kit CSS -->
   <link href="../css/main.css" rel="stylesheet" />
+  <link href="../css/docs.css" rel="stylesheet" />
+  <link href="../css/main2.css" rel="stylesheet" />
   <link href="../css/datetimepicker.css" rel="stylesheet" />
   <style>
     .footer {
@@ -30,7 +32,7 @@
 
 <body>
   <div class="wrapper ">
-    <div class="sidebar" data-color="purple" data-background-color="white">
+    <div class="sidebar" data-color="masala" data-background-color="white">
       <div class="logo">
         <a href="#" class="simple-text logo-mini">
           Masala Magazine
@@ -47,7 +49,7 @@
           <li class="nav-item <?php echo $activeLocation ?>">
             <a class="nav-link" href="./location">
               <i class="material-icons">apartment</i>
-              <p>Delivery Master Lists</p>
+              <p>Delivery Master List</p>
             </a>
           </li>
           <li class="nav-item <?php echo $activeList ?>">
@@ -56,8 +58,8 @@
               <p>Delivery Status</p>
             </a>
           </li>
-          <li class="nav-item <?php echo $activeMsg ?>">
-            <a class="nav-link" href="./messenger">
+          <li class="nav-item <?php echo $activeDetail ?>">
+            <a class="nav-link" href="./detail">
               <i class="material-icons">library_add</i>
               <p>Delivery Details</p>
             </a>

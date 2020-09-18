@@ -2,6 +2,7 @@
 <?php $pageName = 'Update Location'; ?>
 
 <?php include 'header.php';?>
+<form action="" method="get" >
 <div class="content">
         <div class="container-fluid">
         <!-- <button type="btn" class="btn btn-success">+ Add</button> -->
@@ -32,7 +33,7 @@
                         </div>
                         <!-- Messenger   -->
                         <div class="form-group">
-                            <select class="form-control" id="exampleSelect1">
+                            <select class="form-control" id="exampleSelect1" name="update-location-messenger">
                                 <option>=== Select Messenger ===</option>
                                 <option>Messenger A</option>
                                 <option>Messenger B</option>
@@ -84,13 +85,13 @@
                         <!-- Comment -->
                         <div class="form-group">
                             <label for="inputComment" class="bmd-label-floating">Comment</label>
-                            <textarea type="text" class="form-control" id="inputComment" rows="3"></textarea>
+                            <textarea type="text" class="form-control" id="inputComment" rows="2"></textarea>
                         </div>
                         <!-- Save -->
                         <div class="form-group">
-                            <a href="./location.php">
+                            
                                 <button type="btn" class="btn btn-primary">Save</button>
-                            </a>
+                           
                         </div>
                     </div>
                 </div>
@@ -114,5 +115,5 @@
             </div>
         </div>
 </div>
-      
+</form>      
 <?php include 'footer.php';?>
