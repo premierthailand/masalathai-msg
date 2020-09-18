@@ -20,7 +20,7 @@
   <link href="../css/docs.css" rel="stylesheet" />
   <link href="../css/main2.css" rel="stylesheet" />
   <link href="../css/datetimepicker.css" rel="stylesheet" />
-  
+
   <style>
     .footer {
       position: fixed;
@@ -31,9 +31,9 @@
   </style>
 </head>
 
-<body>
+<body >
   <div class="wrapper ">
-    <div class="sidebar" data-color="masala" data-background-color="white">
+    <div class="sidebar sidebar-bg" data-color="masala" data-background-color="white" style="background-image: url('https://images.unsplash.com/photo-1582738411706-bfc8e691d1c2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80');">
       <div class="logo">
         <a href="#" class="simple-text logo-mini">
           <img src="http://www.masalathai.com/2015/wp-content/uploads/2020/07/Masala-Logo.png" width="70%">
@@ -74,20 +74,19 @@
         </ul>
         <ul class="nav">
           <li class="nav-item">
-
-            <footer class="footer">
-              <div class="container-fluid">
-                <hr>
-                <div class="">
-                  &copy;
-                  <script>
-                    document.write(new Date().getFullYear())
-                  </script>
-                  <br>
-                  <a href="#">Masala, Magazine</a>
+            <footer class="footer">&emsp;&emsp;
+                <div class="container-fluid">
+                  <hr>
+                  <div class="">
+                    &copy;
+                    <script>
+                      document.write(new Date().getFullYear())
+                    </script>
+                    <br>
+                    <a href="#">Masala, Magazine</a>
+                  </div>
+                  <!-- your footer here -->
                 </div>
-                <!-- your footer here -->
-              </div>
             </footer>
           </li>
         </ul>
@@ -113,7 +112,7 @@
               <span class="navbar-toggler-icon icon-bar"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end">
-              
+
               <ul class="navbar-nav">
                 <li class="nav-item dropdown">
                   <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

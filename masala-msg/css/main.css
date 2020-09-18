@@ -28,18 +28,18 @@
   padding-top: 75px;
 }
 .marginProfile {
-    margin-top: 30px;;
+  margin-top: 30px;
 }
 
-.login-margin{
+.login-margin {
   margin-top: 20%;
 }
-.deliverry-detail{
-    padding-bottom: 8px;
-    padding-top: 8px;
-    padding-left: 15px;
-    padding-right: 15px;
-    margin-bottom: 0px
+.deliverry-detail {
+  padding-bottom: 8px;
+  padding-top: 8px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-bottom: 0px;
 }
 .btn-masala {
   color: #ffffff;
@@ -68,7 +68,7 @@
 
 .btn-masala:not(:disabled):not(.disabled):active,
 .btn-masala:not(:disabled):not(.disabled).active,
-.show>.btn-masala.dropdown-toggle {
+.show > .btn-masala.dropdown-toggle {
   color: #ffffff;
   background-color: #e92719;
   border-color: #df3024;
@@ -76,7 +76,7 @@
 
 .btn-masala:not(:disabled):not(.disabled):active:focus,
 .btn-masala:not(:disabled):not(.disabled).active:focus,
-.show>.btn-masala.dropdown-toggle:focus {
+.show > .btn-masala.dropdown-toggle:focus {
   box-shadow: none, 0 0 0 0.2rem rgba(244, 67, 54, 0.5);
 }
 
@@ -84,7 +84,8 @@
   color: #fff;
   background-color: #b4292d;
   border-color: #b4292d;
-  box-shadow: 0 2px 2px 0 rgba(244, 67, 54, 0.14), 0 3px 1px -2px rgba(244, 67, 54, 0.2), 0 1px 5px 0 rgba(244, 67, 54, 0.12);
+  box-shadow: 0 2px 2px 0 rgba(244, 67, 54, 0.14),
+    0 3px 1px -2px rgba(244, 67, 54, 0.2), 0 1px 5px 0 rgba(244, 67, 54, 0.12);
 }
 
 .btn.btn-masala:hover {
@@ -104,12 +105,13 @@
 
 .btn.btn-masala:active,
 .btn.btn-masala.active,
-.open>.btn.btn-masala.dropdown-toggle,
-.show>.btn.btn-masala.dropdown-toggle {
+.open > .btn.btn-masala.dropdown-toggle,
+.show > .btn.btn-masala.dropdown-toggle {
   color: #fff;
   background-color: #f33527;
   border-color: #e11b0c;
-  box-shadow: 0 2px 2px 0 rgba(244, 67, 54, 0.14), 0 3px 1px -2px rgba(244, 67, 54, 0.2), 0 1px 5px 0 rgba(244, 67, 54, 0.12);
+  box-shadow: 0 2px 2px 0 rgba(244, 67, 54, 0.14),
+    0 3px 1px -2px rgba(244, 67, 54, 0.2), 0 1px 5px 0 rgba(244, 67, 54, 0.12);
 }
 
 .btn.btn-masala:active:hover,
@@ -118,23 +120,23 @@
 .btn.btn-masala.active:hover,
 .btn.btn-masala.active:focus,
 .btn.btn-masala.active.focus,
-.open>.btn.btn-masala.dropdown-toggle:hover,
-.open>.btn.btn-masala.dropdown-toggle:focus,
-.open>.btn.btn-masala.dropdown-toggle.focus,
-.show>.btn.btn-masala.dropdown-toggle:hover,
-.show>.btn.btn-masala.dropdown-toggle:focus,
-.show>.btn.btn-masala.dropdown-toggle.focus {
+.open > .btn.btn-masala.dropdown-toggle:hover,
+.open > .btn.btn-masala.dropdown-toggle:focus,
+.open > .btn.btn-masala.dropdown-toggle.focus,
+.show > .btn.btn-masala.dropdown-toggle:hover,
+.show > .btn.btn-masala.dropdown-toggle:focus,
+.show > .btn.btn-masala.dropdown-toggle.focus {
   color: #fff;
   background-color: #f33527;
   border-color: #a21309;
 }
 
-.open>.btn.btn-masala.dropdown-toggle.bmd-btn-icon {
+.open > .btn.btn-masala.dropdown-toggle.bmd-btn-icon {
   color: inherit;
   background-color: #b4292d;
 }
 
-.open>.btn.btn-masala.dropdown-toggle.bmd-btn-icon:hover {
+.open > .btn.btn-masala.dropdown-toggle.bmd-btn-icon:hover {
   background-color: #f33527;
 }
 
@@ -155,7 +157,8 @@
 .btn.btn-masala:focus,
 .btn.btn-masala:active,
 .btn.btn-masala:hover {
-  box-shadow: 0 14px 15px -10px rgba(0, 0, 0, 0.637), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(244, 67, 54, 0.2);
+  box-shadow: 0 14px 15px -10px rgba(0, 0, 0, 0.637),
+    0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(244, 67, 54, 0.2);
 }
 
 .btn.btn-masala.btn-link {
@@ -175,7 +178,8 @@
   color: #fff;
   background-color: #b4292d;
   border-color: #b4292d;
-  box-shadow: 0 2px 2px 0 rgba(244, 67, 54, 0.14), 0 3px 1px -2px rgba(244, 67, 54, 0.2), 0 1px 5px 0 rgba(244, 67, 54, 0.12);
+  box-shadow: 0 2px 2px 0 rgba(244, 67, 54, 0.14),
+    0 3px 1px -2px rgba(244, 67, 54, 0.2), 0 1px 5px 0 rgba(244, 67, 54, 0.12);
 }
 /*btn-masalla*/
 .fixed-plugin .btn.btn-masala:hover {
@@ -194,12 +198,13 @@
 
 .fixed-plugin .btn.btn-masala:active,
 .fixed-plugin .btn.btn-masala.active,
-.open>.fixed-plugin .btn.btn-masala.dropdown-toggle,
-.show>.fixed-plugin .btn.btn-masala.dropdown-toggle {
+.open > .fixed-plugin .btn.btn-masala.dropdown-toggle,
+.show > .fixed-plugin .btn.btn-masala.dropdown-toggle {
   color: #fff;
   background-color: #f33527;
   border-color: #e11b0c;
-  box-shadow: 0 2px 2px 0 rgba(244, 67, 54, 0.14), 0 3px 1px -2px rgba(244, 67, 54, 0.2), 0 1px 5px 0 rgba(244, 67, 54, 0.12);
+  box-shadow: 0 2px 2px 0 rgba(244, 67, 54, 0.14),
+    0 3px 1px -2px rgba(244, 67, 54, 0.2), 0 1px 5px 0 rgba(244, 67, 54, 0.12);
 }
 
 .fixed-plugin .btn.btn-masala:active:hover,
@@ -208,23 +213,23 @@
 .fixed-plugin .btn.btn-masala.active:hover,
 .fixed-plugin .btn.btn-masala.active:focus,
 .fixed-plugin .btn.btn-masala.active.focus,
-.open>.fixed-plugin .btn.btn-masala.dropdown-toggle:hover,
-.open>.fixed-plugin .btn.btn-masala.dropdown-toggle:focus,
-.open>.fixed-plugin .btn.btn-masala.dropdown-toggle.focus,
-.show>.fixed-plugin .btn.btn-masala.dropdown-toggle:hover,
-.show>.fixed-plugin .btn.btn-masala.dropdown-toggle:focus,
-.show>.fixed-plugin .btn.btn-masala.dropdown-toggle.focus {
+.open > .fixed-plugin .btn.btn-masala.dropdown-toggle:hover,
+.open > .fixed-plugin .btn.btn-masala.dropdown-toggle:focus,
+.open > .fixed-plugin .btn.btn-masala.dropdown-toggle.focus,
+.show > .fixed-plugin .btn.btn-masala.dropdown-toggle:hover,
+.show > .fixed-plugin .btn.btn-masala.dropdown-toggle:focus,
+.show > .fixed-plugin .btn.btn-masala.dropdown-toggle.focus {
   color: #fff;
   background-color: #f33527;
   border-color: #a21309;
 }
 
-.open>.fixed-plugin .btn.btn-masala.dropdown-toggle.bmd-btn-icon {
+.open > .fixed-plugin .btn.btn-masala.dropdown-toggle.bmd-btn-icon {
   color: inherit;
   background-color: #b4292d;
 }
 
-.open>.fixed-plugin .btn.btn-masala.dropdown-toggle.bmd-btn-icon:hover {
+.open > .fixed-plugin .btn.btn-masala.dropdown-toggle.bmd-btn-icon:hover {
   background-color: #f33527;
 }
 
@@ -247,7 +252,8 @@
 .fixed-plugin .btn.btn-masala:focus,
 .fixed-plugin .btn.btn-masala:active,
 .fixed-plugin .btn.btn-masala:hover {
-  box-shadow: 0 14px 26px -12px rgba(244, 67, 54, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(244, 67, 54, 0.2);
+  box-shadow: 0 14px 26px -12px rgba(244, 67, 54, 0.42),
+    0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(244, 67, 54, 0.2);
 }
 
 .fixed-plugin .btn.btn-masala.btn-link {
@@ -275,10 +281,20 @@
 .card .card-header-masala .card-icon,
 .card .card-header-masala:not(.card-header-icon):not(.card-header-text),
 .card .card-header-masala .card-text {
-  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(244, 67, 54, 0.4);
+  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14),
+    0 7px 10px -5px rgba(244, 67, 54, 0.4);
 }
 
-.sidebar[data-color="masala"] li.active>a {
+.sidebar[data-color="masala"] li.active > a {
   background-color: #b4292d;
-  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(244, 67, 54, 0.4);
+  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14),
+    0 7px 10px -5px rgba(244, 67, 54, 0.4);
 }
+/* .sidebar-bg {
+  width: 13.5%;
+  position: fixed;
+  height: 100%;
+  background: url(https://images.unsplash.com/photo-1582738411706-bfc8e691d1c2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80)
+    repeat-y;
+} */
+
