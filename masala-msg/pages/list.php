@@ -6,7 +6,7 @@
     <div class="row">
       <div class="col-lg-12 col-md-12">
         <div class="card">
-          <div class="card-header card-header-primary card-header-icon">
+          <div class="card-header card-header-masala card-header-icon">
             <div class="card-icon">
               <i class="material-icons">library_books</i>
             </div>

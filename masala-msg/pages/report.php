@@ -16,40 +16,37 @@
                         <h3 class="card-title">Messenger Report</h3>
                     </div>
                     <div class="col-md-12">
-                        <div class="card-body" style="padding-left: 10%;">
+                        <div class="card-body" style="padding-left: 5%;">
                             <form method="get">
                                 <div class="row">
                                     <div class="col-md-3">
                                         <div class="form-group bmd-form-group">
-                                            <label class="bmd-label-floating">Date</label>
-                                            <input type="text" value="<?php echo date("d-m-yy"); ?>" class="form-control" name="date-msg">
+                                            <input type="text" class="form-control datetimepicker" name="date-msg" placeholder="Date">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group bmd-form-group">
-                                            <label class="bmd-label-floating">Name (messenger)</label>
-                                            <input list="brow" class="custom-select form-control" name="name-msg">
-                                            <datalist id="brow">
-                                                <option value="Somporn Sompong"></option>
-                                                <option value="Srisan wompong"></option>
-                                                <option value="Song wannawong"></option>
-                                            </datalist> 
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group bmd-form-group">
-                                            <label class="bmd-label-floating">Location</label>
-                                            <input list="brow" class="custom-select form-control" name="report-msg">
-                                            <datalist id="brow">
+                                            <input list="brow1" class="custom-select form-control" name="name-msg" placeholder="Messenger Name">
+                                            <datalist id="brow1">
                                                 <option value="Somporn Sompong"></option>
                                                 <option value="Srisan wompong"></option>
                                                 <option value="Song wannawong"></option>
                                             </datalist>
                                         </div>
                                     </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group bmd-form-group">
+                                            <input list="brow2" class="custom-select form-control" name="report-msg" placeholder="Location Name">
+                                            <datalist id="brow2">
+                                                <option value="Asok"></option>
+                                                <option value="Sukhumvit"></option>
+                                                <option value="Srinakarin"></option>
+                                            </datalist>
+                                        </div>
+                                    </div>
 
                                     <div class="col-md-2 ">
-                                        <button type="submit" class="btn btn-masala pull-right">Search</button>
+                                        <button type="submit" class="btn btn-masala pull-left">Search</button>
                                         <div class="clearfix"></div>
                                     </div>
                                 </div>

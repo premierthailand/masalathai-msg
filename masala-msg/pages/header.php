@@ -20,6 +20,7 @@
   <link href="../css/docs.css" rel="stylesheet" />
   <link href="../css/main2.css" rel="stylesheet" />
   <link href="../css/datetimepicker.css" rel="stylesheet" />
+  
   <style>
     .footer {
       position: fixed;
@@ -35,7 +36,7 @@
     <div class="sidebar" data-color="masala" data-background-color="white">
       <div class="logo">
         <a href="#" class="simple-text logo-mini">
-          Masala Magazine
+          <img src="http://www.masalathai.com/2015/wp-content/uploads/2020/07/Masala-Logo.png" width="70%">
         </a>
       </div>
       <div class="sidebar-wrapper">
