@@ -107,7 +107,7 @@ $(document).ready(function() {
   $('#example').DataTable({
     "searching" : false,
     "lengthChange" : false,
-    "pageLength" : 10
+    "pageLength" : 20
   })
 } );
 

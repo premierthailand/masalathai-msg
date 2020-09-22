@@ -5,22 +5,28 @@
 
 <head>
   <title>Masalathai Messenger</title>
-  <link rel="icon" href="../img/Masala-Logo-1.png" type="image/x-icon">
+  <link rel="icon" href="http://www.masalathai.com/2015/wp-content/uploads/2020/07/Masala-Logo-1.png" type="image/x-icon">
 
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-
+  <!--     Fonts and icons     -->
   <link href="../css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
-  <link href="../css/family-roboto.css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" rel="stylesheet" type="text/css" />
-  <link href="../css/font-awesome.min.css" rel="stylesheet" />
-  <link href="../css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="../css/family-roboto.css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+  <!-- <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script> -->
+  <!-- <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script> -->
+  
+  <!-- Material Kit CSS -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"  rel="stylesheet">
+  <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css"  rel="stylesheet"> -->
+  <!-- <link href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css"  rel="stylesheet"> -->
+  <link href="../css/main.css" rel="stylesheet" />
   <link href="../css/docs.css" rel="stylesheet" />
+  <link href="../css/main2.css" rel="stylesheet" />
   <link href="../css/nav.css" rel="stylesheet" />
   <link href="../css/datetimepicker.css" rel="stylesheet" />
-  <link href="../css/main.css" rel="stylesheet" />
-  <link href="../css/main2.css" rel="stylesheet" />
-  
+
   <style>
     .footer {
       position: fixed;
@@ -36,7 +42,7 @@
     <div class="sidebar sidebar-bg" data-color="masala" data-background-color="white" style="background-image: url('../img/bg-134521.jpg');">
       <div class="logo">
         <a href="dashboard" class="simple-text logo-mini">
-          <img src="../img/Masala-Logo.png" width="200">
+          <img src="http://www.masalathai.com/2015/wp-content/uploads/2020/07/Masala-Logo.png" width="200">
         </a>
       </div>
       <div class="sidebar-wrapper">

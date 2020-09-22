@@ -5083,12 +5083,7 @@ tbody.collapse.show {
   background-color: transparent;
   border: 0 solid #dee2e6;
 }
-.page-item.active .page-link {
-  z-index: 1;
-  color: #ffffff;
-  background-color: #b4292d;
-  border-color: #b4292d;
-}
+
 .page-link:hover {
   color: #0a6ebd;
   text-decoration: none;
@@ -5117,7 +5112,12 @@ tbody.collapse.show {
   border-bottom-right-radius: 0.25rem;
 }
 
-
+.page-item.active .page-link {
+  z-index: 1;
+  color: #ffffff;
+  background-color: #2196f3;
+  border-color: #2196f3;
+}
 
 .page-item.disabled .page-link {
   color: #6c757d;
@@ -16981,7 +16981,7 @@ thead.thead-inverse th,
 .dataTable>thead>tr>td,
 .dataTable>tbody>tr>td,
 .dataTable>tfoot>tr>td {
-  padding: 10px !important;
+  padding: 5px !important;
 }
 
 body {

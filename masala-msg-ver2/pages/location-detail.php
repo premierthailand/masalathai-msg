@@ -22,7 +22,7 @@
                                             <div class="text-right textDetail">Location Name : </div>
                                         </div>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="location-detail-name" required>
+                                            <input type="text" class="form-control" name="location-detail-name">
                                         </div>
                                     </div>
                                     <br>
@@ -32,22 +32,7 @@
                                             <div class="text-right textDetail">Address : </div>
                                         </div>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="location-detail-address" required>
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <!-- Category -->
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <div class="text-right textDetail">Category : </div>
-                                        </div>
-                                        <div class="col-md-9">
-                                            <select name="" class="form-control" id="">
-                                                <option value=""></option>
-                                                <option value="">1</option>
-                                                <option value="">2</option>
-                                                <option value="">3</option>
-                                            </select>
+                                            <input type="text" class="form-control" name="location-detail-address">
                                         </div>
                                     </div>
                                     <br>
@@ -57,31 +42,36 @@
                                             <div class="text-right textDetail">Number of Copy : </div>
                                         </div>
                                         <div class="col-md-9">
-                                            <input type="number" class="form-control" name="location-detail-copy" required>
+                                            <input type="text" class="form-control" name="location-detail-copy">
                                         </div>
                                     </div>
                                     <br>
                                     <!-- Contact Person-->
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <div class="text-right textDetail">Contact Name : </div>
+                                            <div class="text-right textDetail">Contact Person : </div>
                                         </div>
                                         <div class="col-md-9">
                                             <input type="text" class="form-control" name="location-detail-contact">
                                         </div>
                                     </div>
                                     <br>
-                                    <!-- Phone -->
+                                    <!-- Category -->
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <div class="text-right textDetail">Contact Phone : </div>
+                                            <div class="text-right">Category : </div>
                                         </div>
                                         <div class="col-md-9">
-                                            <input type="number" class="form-control" id="phone" name="phone">
+                                            <input list="brow" class="custom-select form-control" name="location-detail-catgory" placeholder="Location Name">
+                                            <datalist id="brow">
+                                                <option value="Hotel"></option>
+                                                <option value="Hospital"></option>
+                                                <option value="School"></option>
+                                            </datalist>
                                         </div>
                                     </div>
                                     <br>
-                                    <!-- Save -->
+                                    <!-- insert -->
                                     <div class="row">
                                         <div class="col-md-3">
                                         </div>

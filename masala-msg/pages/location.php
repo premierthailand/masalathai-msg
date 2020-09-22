@@ -49,23 +49,38 @@
                             <table class="table">
                                 <thead class="font-weight-bold">
                                     <tr class="text-center">
-                                        <td width="5%">No.</td>
+                                        <td width="3%">No.</td>
                                         <td width="15%">Location Name</td>
-                                        <td width="35%">Address</td>
-                                        <td width="10%">Number of Copies</td>
+                                        <td width="30%">Address</td>
+                                        <td width="5%">Number of Copies</td>
                                         <td width="10%">Contact Person</td>
+                                        <td width="12%">Phone</td>
                                         <td width="15%">Category</td>
                                         <td width="10%">Action</td>
                                     </tr>
                                 </thead>
                                 <tbody>
+
+                                    <?php
+                                    $sql = "SELECT `location_id`,`location_name`,`location_address`,`location_count`,`location_contact_name`,`location_contact_phone`,`category_name` FROM `location` INNER JOIN category ON location.`location_category_id`=category.category_id where `Location_isActive`=1";
+                                    $result = $conn->query($sql);
+
+                                    if ($result->num_rows > 0) {
+                                        // output data of each row
+                                        while($row = $result->fetch_assoc()) {
+                                            
+                                        ?>
+                                
+
+
                                     <tr class="text-center">
-                                        <td>1</td>
-                                        <td class="text-left">Premeir Thailand</td>
-                                        <td class="text-left">85/3 Sukhumvit 12 Alley, Bangkok 10110</td>
-                                        <td>10</td>
-                                        <td class="text-left">Somporn Sompong</td>
-                                        <td>Hotel</td>
+                                        <td><?php echo $row["location_id"];?></td>
+                                        <td class="text-left"><?php echo $row["location_name"];?></td>
+                                        <td class="text-left"><?php echo $row["location_address"];?></td>
+                                        <td><?php echo $row["location_count"];?></td>
+                                        <td class="text-left"><?php echo $row["location_contact_name"];?></td>
+                                        <td><?php echo $row["location_contact_phone"];?></td>
+                                        <td><?php echo $row["category_name"];?></td>
                                         <td class="td-actions text-center">
                                             <a href="location-edit">
                                                 <button type="button" rel="tooltip" class="btn btn-success" data-original-title="" title="">
@@ -77,78 +92,14 @@
                                             </button>
                                         </td>
                                     </tr>
-                                    <tr class="text-center">
-                                        <td>2</td>
-                                        <td class="text-left">Novotel</td>
-                                        <td class="text-left">19/9 Soi Sukhumvit 20, Sukhumvit Road, Klongtoey, 10110</td>
-                                        <td>5</td>
-                                        <td class="text-left">Srisan wompong</td>
-                                        <td>Hotel</td>
-                                        <td class="td-actions text-center">
-                                            <a href="location-edit">
-                                                <button type="button" rel="tooltip" class="btn btn-success" data-original-title="" title="">
-                                                    <i class="material-icons">edit</i>
-                                                </button>
-                                            </a>
-                                            <button type="button" rel="tooltip" class="btn btn-danger" data-original-title="" title="">
-                                                <i class="material-icons">close</i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>3</td>
-                                        <td class="text-left">Red Planet Bangkok Asoke</td>
-                                        <td class="text-left">7 Sukhumvit 14 Alley, Khlong Toei Nuea, Khlong Toei, Bangkok 10110</td>
-                                        <td>8</td>
-                                        <td class="text-left">Srisan wompong</td>
-                                        <td>Hotel</td>
-                                        <td class="td-actions text-center">
-                                            <a href="location-edit">
-                                                <button type="button" rel="tooltip" class="btn btn-success" data-original-title="" title="">
-                                                    <i class="material-icons">edit</i>
-                                                </button>
-                                            </a>
-                                            <button type="button" rel="tooltip" class="btn btn-danger" data-original-title="" title="">
-                                                <i class="material-icons">close</i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>4</td>
-                                        <td class="text-left">SKYVIEW Hotel Bangkok</td>
-                                        <td class="text-left">12 Sukhumvit 24 Alley, Khlong Tan, Khlong Toei, Bangkok 10110</td>
-                                        <td>12</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>Hotel</td>
-                                        <td class="td-actions text-center">
-                                            <a href="location-edit">
-                                                <button type="button" rel="tooltip" class="btn btn-success" data-original-title="" title="">
-                                                    <i class="material-icons">edit</i>
-                                                </button>
-                                            </a>
-                                            <button type="button" rel="tooltip" class="btn btn-danger" data-original-title="" title="">
-                                                <i class="material-icons">close</i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>5</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>Hotel</td>
-                                        <td class="td-actions text-center">
-                                            <a href="location-edit">
-                                                <button type="button" rel="tooltip" class="btn btn-success" data-original-title="" title="">
-                                                    <i class="material-icons">edit</i>
-                                                </button>
-                                            </a>
-                                            <button type="button" rel="tooltip" class="btn btn-danger" data-original-title="" title="">
-                                                <i class="material-icons">close</i>
-                                            </button>
-                                        </td>
-                                    </tr>
+                                   <?php         
+                                }
+                                    } else {
+                                        echo "Error : 404";
+                                    }
+
+                                    $conn->close();
+                                    ?>
                                 </tbody>
                             </table>
                         </div>

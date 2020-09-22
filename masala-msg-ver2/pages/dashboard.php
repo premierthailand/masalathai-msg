@@ -11,7 +11,7 @@
                   </div>
                   <p class="card-category"><b>Delivery Master List</b></p>
                   <h3 class="card-title">300
-                    <small>Locations</small>
+                    <small>Location</small>
                   </h3>
                 </div>
                 <div class="card-footer">
@@ -32,7 +32,7 @@
                   </div>
                   <p class="card-category"><b>Delivery Status</b></p>
                   <h3 class="card-title">400 
-                  <small>Lists</small>
+                  <small>List</small>
                   </h3>
                 </div>
                 <div class="card-footer">
@@ -72,7 +72,7 @@
                   </div>
                   <p class="card-category"><b>Messenger Report</b></p>
                   <h3 class="card-title">10 
-                  <small>Reports</small>
+                  <small>Report</small>
                   </h3>
                 </div>
                 <div class="card-footer">

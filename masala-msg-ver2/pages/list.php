@@ -13,13 +13,13 @@
             <h4 class="card-title">Delivery List</h4>
           </div>
           <div class="card-body">
-            <br />
+            <br/>
             <form action="" method="get">
               <ul class="nav nav-pills nav-pills-info row">
                 <li class="active col-md-3" style="padding-right:30px;padding-left:30px;"><a href="#pill1" data-toggle="tab">Masala</a></li>
                 <li class="col-md-3" style="padding-right:30px;padding-left:30px;"><a href="#pill2" data-toggle="tab">Masala LITE</a></li>
               </ul>
-              <br />
+              <br/>
               <div class="row">
                 <div class="col-md-6" style="padding-right:30px;padding-left:30px;">
 
@@ -51,16 +51,14 @@
                       </span>
                     </label>
                   </div>
-                  <!-- <div class="form-group no-margin-top">
+                  <div class="form-group no-margin-top">
                     <input list="brow1" class="custom-select form-control" name="1" placeholder="Sort By..">
                     <datalist id="brow1">
                       <option value="Messenger Name"></option>
                       <option value="Location Name"></option>
                       <option value="Delivery Date"></option>
                     </datalist>
-                  </div> -->
-                    <button type="submit" class="btn btn-masala pull-left">Search</button>
-                    <div class="clearfix"></div>
+                  </div>
                 </div>
                 <!-- <div class="col-md-3" style="padding-right:30px;padding-left:30px;">
                   <div class="form-group no-margin-top">
@@ -103,10 +101,10 @@
             <br />
 
             <div class="table-responsive">
-              <table class="table" id="example" width="100%">
+              <table class="table">
                 <thead class="font-weight-bold">
                   <tr>
-                    <td class="text-center">No.</td>
+                    <td class="text-center">#</td>
                     <td>Messenger</td>
                     <td>Location</td>
                     <td>Status</td>

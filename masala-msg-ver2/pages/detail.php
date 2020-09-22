@@ -46,22 +46,11 @@
                                     <!-- Date -->
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <div class="text-right textDetail">Delivery Date : </div>
+                                            <div class="text-right textDetail">Date : </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group no-margin-top">
-                                                <input name="txtDate" type="date" class="form-control" value="<?php echo date("Y-m-d"); ?>"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- masala -->
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <div class="text-right textDetail">Magazine Vol. : </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group no-margin-top">
-                                                <input name="txtVol" type="month" class="form-control" value="<?php echo date("Y-m")?>"/>
+                                                <input type="text" class="form-control" value="<?php echo date("d/m/Y"); ?>" />
                                             </div>
                                         </div>
                                     </div>
@@ -71,7 +60,7 @@
                                             <div class="text-right textDetail">Location Name : </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="form-group no-margin-top">
+                                            <div class="form-group detail-date-margin">
                                                 <input list="brow" class="custom-select form-control" name="detail-location">
                                                 <datalist id="brow">
                                                     <option value="test"></option>
@@ -132,24 +121,16 @@
                                             <div class="text-right textDetail">Upload Photo : </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="file" name="detail-img" accept=".jpg,.png,.jpeg">
+                                                <input type="file" name="detail-img" accept=".jpg,.png,.jpeg">
                                         </div>
                                     </div>
                                     <!-- Comment -->
-                                    <div class="row detailMargin">
+                                    <div class="row">
                                         <div class="col-md-3">
-                                            <div class="text-right textDetail">Issue : </div>
+                                            <div class="text-right textDetail">Comment : </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="form-group no-margin-top">
-                                                <select class="form-control" id="exampleFormControlSelect1">
-                                                    <option value=""></option>
-                                                    <option value="1">Refuse to Accept</option>
-                                                    <option value="2">Need a Contact Person</option>
-                                                    <option value="3">Other</option>
-                                                </select>
-                                            </div>
-
+                                            <input type="text" class="form-control">
                                         </div>
                                     </div>
                                     <!-- Save -->
@@ -158,7 +139,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <button type="submit" class="btn btn-masala pull-left">Save</button>
+                                                <button type="btn" class="btn btn-sm btn-success">Save</button>
                                             </div>
                                         </div>
                                     </div>
