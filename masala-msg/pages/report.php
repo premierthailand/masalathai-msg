@@ -17,40 +17,38 @@
                     </div>
                     <div class="col-md-12">
                         <div class="card-body" style="padding-left: 5%;">
-                            <form method="get">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <div class="form-group bmd-form-group">
-                                            <input type="text" class="form-control datetimepicker" name="date-msg" placeholder="Date">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group bmd-form-group">
-                                            <input list="brow1" class="custom-select form-control" name="name-msg" placeholder="Messenger Name">
-                                            <datalist id="brow1">
-                                                <option value="Somporn Sompong"></option>
-                                                <option value="Srisan wompong"></option>
-                                                <option value="Song wannawong"></option>
-                                            </datalist>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group bmd-form-group">
-                                            <input list="brow2" class="custom-select form-control" name="report-msg" placeholder="Location Name">
-                                            <datalist id="brow2">
-                                                <option value="Asok"></option>
-                                                <option value="Sukhumvit"></option>
-                                                <option value="Srinakarin"></option>
-                                            </datalist>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-2 ">
-                                        <button type="submit" class="btn btn-masala pull-left">Search</button>
-                                        <div class="clearfix"></div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group bmd-form-group">
+                                        <input type="text" id="txtDate" class="form-control datetimepicker" name="date-msg" placeholder="Date" value="<?php echo $_REQUEST["date"]?>">
                                     </div>
                                 </div>
-                            </form>
+                                <div class="col-md-3">
+                                    <div class="form-group bmd-form-group">
+                                        <input list="messengerReport" class="custom-select form-control" id="txtMessenger" name="name-msg" placeholder="Messenger Name" value="<?php echo $_REQUEST["messenger"]?>">
+                                        <datalist id="messengerReport">
+                                            <option value="Somporn Sompong"></option>
+                                            <option value="Srisan wompong"></option>
+                                            <option value="Song wannawong"></option>
+                                        </datalist>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group bmd-form-group">
+                                        <input list="locationReport" class="custom-select form-control" id="txtLocation" name="report-msg" placeholder="Location Name" value="<?php echo $_REQUEST["location"]?>">
+                                        <datalist id="locationReport">
+                                            <option value="Asok"></option>
+                                            <option value="Sukhumvit"></option>
+                                            <option value="Srinakarin"></option>
+                                        </datalist>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2 ">
+                                    <button class="btn btn-masala pull-left" id="btnSearch">Search</button>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="card-body">
@@ -67,799 +65,51 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="text-center">
-                                        <td>1</td>
-                                        <td class="text-left">Somporn Sompong</td>
-                                        <td>17-09-2020</td>
-                                        <td class="text-left">Premeir Thailand</td>
-                                        <td class="text-left">85/3 Sukhumvit 12 Alley, Bangkok 10110</td>
-                                        <td>10</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>2</td>
-                                        <td class="text-left">Srisan wompong</td>
-                                        <td>15-09-2020</td>
-                                        <td class="text-left">Novotel</td>
-                                        <td class="text-left">19/9 Soi Sukhumvit 20, Sukhumvit Road, Klongtoey, 10110</td>
-                                        <td>5</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>3</td>
-                                        <td class="text-left">Srisan wompong</td>
-                                        <td>09-09-2020</td>
-                                        <td class="text-left">Red Planet Bangkok Asoke</td>
-                                        <td class="text-left">7 Sukhumvit 14 Alley, Khlong Toei Nuea, Khlong Toei, Bangkok 10110</td>
-                                        <td>8</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>4</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">SKYVIEW Hotel Bangkok</td>
-                                        <td class="text-left">12 Sukhumvit 24 Alley, Khlong Tan, Khlong Toei, Bangkok 10110</td>
-                                        <td>12</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>5</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>6</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>7</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>8</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>9</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>10</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>11</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>12</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>13</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>14</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>14</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>15</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>16</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr><tr class="text-center">
-                                        <td>17</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr><tr class="text-center">
-                                        <td>18</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr><tr class="text-center">
-                                        <td>19</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr><tr class="text-center">
-                                        <td>20</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr><tr class="text-center">
-                                        <td>21</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>22</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>23</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>24</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>25</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>26</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>27</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>28</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>29</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>30</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>31</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>32</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>33</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>34</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>35</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>36</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>37</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>38</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>39</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>40</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>41</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>52</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>43</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>44</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>45</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>46</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>47</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>48</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>49</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>50</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>51</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>52</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>53</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>54</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>55</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>56</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>57</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>58</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>59</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>60</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr><tr class="text-center">
-                                        <td>31</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>32</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>33</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>34</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>35</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>36</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>37</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>38</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>39</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>40</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr><tr class="text-center">
-                                        <td>31</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>32</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>33</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>34</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>35</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>36</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>37</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>38</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>39</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>40</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>31</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>32</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>33</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>34</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>35</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>36</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>37</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>38</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>39</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>40</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>31</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>32</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>33</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>34</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>35</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>36</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>37</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>38</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>39</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
-                                    <tr class="text-center">
-                                        <td>40</td>
-                                        <td class="text-left">Song wannawong</td>
-                                        <td>05-09-2020</td>
-                                        <td class="text-left">Somerset Ekamai Bangkok</td>
-                                        <td class="text-left">22/1 Ekamai Soi 2, Soi Sukhumvit 63, Phra Khanong, Watthana, Bangkok 10110</td>
-                                        <td>9</td>
-                                    </tr>
+
+
+                                <?php
+                                    
+                                    $No=0;
+                                    $date = date_create($_REQUEST['date']);
+                                    $selecttime = date_format($date,"Y-m-d");
+                                    $sql = "SELECT `transection_id`,`transection_delivery_date`,`messenger_name`,`location_name`,`location_address`,`location_count` 
+                                            FROM location
+                                            INNER JOIN transection  ON transection.location_id = location.location_id
+                                            INNER JOIN messenger ON messenger.messenger_id = transection.messenger_id
+                                            WHERE `Location_isActive`=1 
+                                            AND transection_delivery_date='$selecttime' 
+                                                 AND messenger_name LIKE '%".$_REQUEST["messenger"]."%' 
+                                                 AND location_name LIKE '%".$_REQUEST["location"]."%'";
+                                    $result = $conn->query($sql);
+
+                                    if ($result->num_rows > 0) {
+                                        // output data of each row
+                                        while ($row = $result->fetch_assoc()) {
+                                            $No++;
+                                    ?>
+                                    <tr class="text-center">
+                                        <?php
+                                                $showdate = date_create($row["transection_delivery_date"]);
+                                                $showtime = date_format($showdate,"d-m-Y");
+
+                                        ?>
+                                        <td><?php echo $No?></td>
+                                        <td class="text-left"><?php echo $row["messenger_name"]; ?></td>
+                                        <td><?php echo $showtime?></td>
+                                        <td class="text-left"><?php echo $row["location_name"]; ?></td>
+                                        <td class="text-left"><?php echo $row["location_address"]; ?></td>
+                                        <td><?php echo $row["location_count"]; ?></td>
+                                    </tr>
+                                    <?php
+                                        }
+                                    } else {
+                                        
+                                        echo "<script type='text/javascript'>alert('Error : Database Connection Failed');</script>";
+                                        
+                                    }
+
+                                    $conn->close();
+                                    ?>
                                 </tbody>
                             </table>
                         </div>
@@ -871,3 +121,18 @@
 </div>
 
 <?php include 'footer.php'; ?>
+<script>
+    $(function() {
+
+        $("#btnSearch").click(SeaarchReport);
+
+    });
+
+    function SeaarchReport() {
+        var date = $("#txtDate").val();
+        var messenger = $("#txtMessenger").val();
+        var location = $("#txtLocation").val();
+        var url = window.location.origin + window.location.pathname + "?date=" + date + "&messenger=" + messenger + "&location=" + location;
+        window.location.href = url;
+    }
+</script>

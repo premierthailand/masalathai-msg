@@ -23,3 +23,11 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+
+.footer {
+  position: fixed;
+  left: px;
+  bottom: 0;
+  text-align: center;
+}

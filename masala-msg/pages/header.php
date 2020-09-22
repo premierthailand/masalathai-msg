@@ -21,14 +21,6 @@
   <link href="../css/main.css" rel="stylesheet" />
   <link href="../css/main2.css" rel="stylesheet" />
   
-  <style>
-    .footer {
-      position: fixed;
-      left: px;
-      bottom: 0;
-      text-align: center;
-    }
-  </style>
 </head>
 
 <body >

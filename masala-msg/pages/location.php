@@ -62,40 +62,50 @@
                                 <tbody>
 
                                     <?php
-                                    $sql = "SELECT `location_id`,`location_name`,`location_address`,`location_count`,`location_contact_name`,`location_contact_phone`,`category_name` FROM `location` INNER JOIN category ON location.`location_category_id`=category.category_id where `Location_isActive`=1";
+                                    $No=0;
+                                    $sql = "SELECT  location_id,
+                                                    location_name,
+                                                    location_address,
+                                                    location_count,
+                                                    location_contact_name,
+                                                    location_contact_phone,
+                                                    category_name 
+                                            FROM location 
+                                            INNER JOIN category ON 
+                                                    location.location_category_id=category.category_id where Location_isActive=1" ;
                                     $result = $conn->query($sql);
 
                                     if ($result->num_rows > 0) {
                                         // output data of each row
-                                        while($row = $result->fetch_assoc()) {
-                                            
-                                        ?>
-                                
+                                        while ($row = $result->fetch_assoc()) {
+                                            $No++;
+                                    ?>
 
 
-                                    <tr class="text-center">
-                                        <td><?php echo $row["location_id"];?></td>
-                                        <td class="text-left"><?php echo $row["location_name"];?></td>
-                                        <td class="text-left"><?php echo $row["location_address"];?></td>
-                                        <td><?php echo $row["location_count"];?></td>
-                                        <td class="text-left"><?php echo $row["location_contact_name"];?></td>
-                                        <td><?php echo $row["location_contact_phone"];?></td>
-                                        <td><?php echo $row["category_name"];?></td>
-                                        <td class="td-actions text-center">
-                                            <a href="location-edit">
-                                                <button type="button" rel="tooltip" class="btn btn-success" data-original-title="" title="">
-                                                    <i class="material-icons">edit</i>
-                                                </button>
-                                            </a>
-                                            <button type="button" rel="tooltip" class="btn btn-danger" data-original-title="" title="">
-                                                <i class="material-icons">close</i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                   <?php         
-                                }
+
+                                            <tr class="text-center">
+                                                <td><?php echo $No?></td>
+                                                <td class="text-left"><?php echo $row["location_name"]; ?></td>
+                                                <td class="text-left"><?php echo $row["location_address"]; ?></td>
+                                                <td><?php echo $row["location_count"]; ?></td>
+                                                <td class="text-left"><?php echo $row["location_contact_name"]; ?></td>
+                                                <td><?php echo $row["location_contact_phone"]; ?></td>
+                                                <td><?php echo $row["category_name"]; ?></td>
+                                                <td class="td-actions text-center">
+                                                    <a href="location-edit?id=<?php echo $row["location_id"]; ?>">
+                                                        <button type="button" rel="tooltip" class="btn btn-success" data-original-title="" title="">
+                                                            <i class="material-icons">edit</i>
+                                                        </button>
+                                                    </a>
+                                                    <button type="button" rel="tooltip" class="btn btn-danger" data-original-title="" title="">
+                                                        <i class="material-icons">close</i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                    <?php
+                                        }
                                     } else {
-                                        echo "Error : 404";
+                                        echo "<script type='text/javascript'>alert('Error : Database Connection Failed');</script>";
                                     }
 
                                     $conn->close();
