@@ -14,172 +14,140 @@
           </div>
           <div class="card-body">
             <br />
-            <form action="" method="get">
-              <ul class="nav nav-pills nav-pills-info row">
-                <li class="active col-md-3" style="padding-right:30px;padding-left:30px;"><a href="#pill1" data-toggle="tab">Masala</a></li>
-                <li class="col-md-3" style="padding-right:30px;padding-left:30px;"><a href="#pill2" data-toggle="tab">Masala LITE</a></li>
-              </ul>
-              <br />
-              <div class="row">
-                <div class="col-md-6" style="padding-right:30px;padding-left:30px;">
-
-                  <!-- <h4 class="text-center">
-                    <input class="form-check-input" type="radio" name="masalaType" id="exampleRadios1" value="masala" checked>
+            <div class="row">
+              <div class="col-md-6">
+                <!-- Magazine Type -->
+                <div class="form-check form-check-radio">
+                  <label class="form-check-label detail-type-margin col-md-3">
+                    <input class="form-check-input" type="radio" name="type" value="masala" checked>
                     Masala
-                  </h4> -->
-                  <div class="form-group no-margin-top">
-                    <input list="brow" class="custom-select form-control" name="2" placeholder="=== All Issue ===">
-                    <datalist id="brow">
-                      <option value="Refuse to Accept"></option>
-                      <option value="Need a Contact Person"></option>
-                      <option value="Other"></option>
-                    </datalist>
-                  </div>
-                  <div class="form-check form-check-radio">
-                    <label class="form-check-label datail-type-margin">
-                      <input class="form-check-input" type="radio" name="magazineType" id="exampleRadios1" value="masala" checked>
-                      Delivered
-                      <span class="circle">
-                        <span class="check"></span>
-                      </span>
-                    </label>
-                    <label class="form-check-label">
-                      <input class="form-check-input" type="radio" name="magazineType" id="exampleRadios2" value="lite">
-                      Not Delivered
-                      <span class="circle">
-                        <span class="check"></span>
-                      </span>
-                    </label>
-                  </div>
-                  <!-- <div class="form-group no-margin-top">
-                    <input list="brow1" class="custom-select form-control" name="1" placeholder="Sort By..">
-                    <datalist id="brow1">
-                      <option value="Messenger Name"></option>
-                      <option value="Location Name"></option>
-                      <option value="Delivery Date"></option>
-                    </datalist>
-                  </div> -->
-                    <button type="submit" class="btn btn-masala pull-left">Search</button>
-                    <div class="clearfix"></div>
+                    <span class="circle">
+                      <span class="check"></span>
+                    </span>
+                  </label>
+                  <label class="form-check-label col-md-6">
+                    <input class="form-check-input" type="radio" name="type" value="lite">
+                    Masala LITE
+                    <span class="circle">
+                      <span class="check"></span>
+                    </span>
+                  </label>
                 </div>
-                <!-- <div class="col-md-3" style="padding-right:30px;padding-left:30px;">
-                  <div class="form-group no-margin-top">
-                    <input list="brow" class="custom-select form-control" name="2" placeholder="=== All Issue ===" disabled>
-                    <datalist id="brow">
-                      <option value="Refuse to Accept"></option>
-                      <option value="Need a Contact Person"></option>
-                      <option value="Other"></option>
-                    </datalist>
-                  </div>
-                  <div class="form-check form-check-radio">
-                    <label class="form-check-label datail-type-margin">
-                      <input class="form-check-input" type="radio" name="lite" id="exampleRadios1" value="masala" checked disabled>
-                      Delivered
-                      <span class="circle">
-                        <span class="check"></span>
-                      </span>
-                    </label>
-                    <label class="form-check-label">
-                      <input class="form-check-input" type="radio" name="lite" id="exampleRadios2" value="lite" disabled>
-                      Not Delivered
-                      <span class="circle">
-                        <span class="check"></span>
-                      </span>
-                    </label>
-                  </div>
-                  <div class="form-group no-margin-top">
-                    <input list="brow1" class="custom-select form-control" name="1" placeholder="Sort By.." disabled>
-                    <datalist id="brow1">
-                      <option value="Messenger Name"></option>
-                      <option value="Location Name"></option>
-                      <option value="Delivery Date"></option>
-                    </datalist>
-                  </div>
-                </div> -->
+                <hr />
+                <!-- Issue -->
+                <div class="form-group no-margin-top">
+                  <input list="issueList" id="txtIssue" class="custom-select form-control" name="issue" placeholder="=== All Issue ===">
+                  <datalist id="issueList">
+                    <?php
+                    $sql = "SELECT issue_name
+                    FROM `issue` 
+                    Where issue_id != 0";
+
+                    $result = $conn->query($sql);
+
+                    if ($result->num_rows > 0) {
+                      // output data of each row
+                      while ($row = $result->fetch_assoc()) {
+                    ?>
+                        <option value="<?php echo $row["issue_name"]; ?>"></option>
+                    <?php
+                      }
+                    }
+                    ?>
+                  </datalist>
+                </div>
+                <!-- Delivered -->
+                <div class="form-check form-check-radio">
+                  <label class="form-check-label detail-type-margin col-md-3">
+                    <input class="form-check-input" type="checkbox" name="deliver" id="txtDelivered" checked>
+                    Delivered
+                    <span class="form-check-sign">
+                      <span class="check"></span>
+                    </span>
+                  </label>
+                  <label class="form-check-label col-md-3">
+                    <input class="form-check-input" type="checkbox" name="active" id="txtActive" checked>
+                    Active
+                    <span class="form-check-sign">
+                      <span class="check"></span>
+                    </span>
+                  </label>
+                </div>
+                <div class="form-check form-check-radio">
+                </div>
+                <br />
+                <button class="btn btn-masala pull-left" id="btnSearch">Search</button>
+                <div class="clearfix"></div>
               </div>
-
-
-            </form>
+            </div>
             <br />
 
             <div class="table-responsive">
-              <table class="table" id="example" width="100%">
+              <table class="table" id="tableList" width="100%">
                 <thead class="font-weight-bold">
-                  <tr>
-                    <td class="text-center">No.</td>
-                    <td>Messenger</td>
-                    <td>Location</td>
-                    <td>Status</td>
-                    <td>Comment</td>
-                    <td>Delivery Time</td>
-                    <td class="text-right">Action</td>
+                  <tr class="text-center">
+                    <td width="5%">No.</td>
+                    <td width="15%">Messenger</td>
+                    <td width="20%">Location</td>
+                    <td width="15%">Status</td>
+                    <td width="15%">Issue</td>
+                    <td width="10%">Delivery Time</td>
+                    <td width="10%">Action</td>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td class="text-center">1</td>
-                    <td>Andrew Mike</td>
-                    <td>Asok</td>
-                    <td>Delivered</td>
-                    <td>-</td>
-                    <td>15/9/2020 14:00</td>
-                    <td class="td-actions text-right">
-                      <button type="button" rel="tooltip" class="btn btn-info" data-original-title="" title="">
-                        <i class="material-icons">image_search</i>
-                      </button>
-                      <button type="button" rel="tooltip" class="btn btn-success" data-original-title="" title="">
-                        <i class="material-icons">edit</i>
-                      </button>
-                      <button type="button" rel="tooltip" class="btn btn-danger" data-original-title="" title="">
-                        <i class="material-icons">close</i>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="text-center">2</td>
-                    <td>John Doe</td>
-                    <td>Siam</td>
-                    <td>Delivered</td>
-                    <td>-</td>
-                    <td>15/9/2020 14:00</td>
-                    <td class="td-actions text-right">
-                      <a href="list?img=<?php echo ""; ?>">
-                        <button type="button" rel="tooltip" class="btn btn-info" data-original-title="" title="">
-                          <i class="material-icons">image_search</i>
-                        </button>
-                      </a>
-                      <a href="list?edit=<?php echo ""; ?>">
-                        <button type="button" rel="tooltip" class="btn btn-success" data-original-title="" title="">
-                          <i class="material-icons">edit</i>
-                        </button>
-                      </a>
-                      <a href="list?delete=<?php echo ""; ?>">
-                        <button type="button" rel="tooltip" class="btn btn-danger" data-original-title="" title="">
-                          <i class="material-icons">close</i>
-                        </button>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="text-center">3</td>
-                    <td>Alex Mike</td>
-                    <td>Bang Na</td>
-                    <td>Delivered</td>
-                    <td>-</td>
-                    <td>15/9/2020 14:00</td>
-                    <td class="td-actions text-right">
-                      <button type="button" rel="tooltip" class="btn btn-info" data-original-title="" title="">
-                        <i class="material-icons">image_search</i>
-                      </button>
-                      <button type="button" rel="tooltip" class="btn btn-success" data-original-title="" title="">
-                        <i class="material-icons">edit</i>
-                      </button>
-                      <button type="button" rel="tooltip" class="btn btn-danger" data-original-title="" title="">
-                        <i class="material-icons">close</i>
-                      </button>
-                    </td>
-                  </tr>
+                    <?php
 
+                    $No = 0;
+                    $date = date_create($row["transection_delivery_date"]);
+                    $listtime = date_format($date, "d-m-Y");
+                    $sql = "SELECT location_name,messenger_name,transection_delivery_date,transection_img,issue_name 
+                    FROM messenger 
+                        INNER JOIN transection  ON transection.messenger_id = messenger.messenger_id
+                        INNER JOIN location  ON location.location_id = transection.location_id
+                        INNER JOIN issue  ON issue.issue_id = transection.issue_id";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                      // output data of each row
+                      while ($row = $result->fetch_assoc()) {
+                        $No++;
+                    ?>
+                        <td class="text-center"><?php echo $No;?></td>
+                        <td><?php echo $row["messenger_name"]; ?></td>
+                        <td><?php echo $row["location_name"]; ?></td>
+                        <td class="text-center">
+
+                          <?php 
+                          $status=$row["transection_img"];
+                              if($status!=''){
+                                echo "Delivered";
+                              }else{
+                                echo "Not Delivered";
+                              }
+                           ?>
+
+                        </td>
+                        <td><?php echo $row["issue_name"]; ?></td>
+                        <td class="text-center"><?php echo $listtime; ?></td>
+                        <td class="td-actions text-center">
+                          <button type="button" rel="tooltip" class="btn btn-info" data-original-title="" title="">
+                            <i class="material-icons">image_search</i>
+                          </button>
+                          <button type="button" rel="tooltip" class="btn btn-success" data-original-title="" title="">
+                            <i class="material-icons">edit</i>
+                          </button>
+                          <button type="button" rel="tooltip" class="btn btn-danger" data-original-title="" title="">
+                            <i class="material-icons">close</i>
+                          </button>
+                        </td>
+                  </tr>
+              <?php
+                      }
+                    }
+
+                    $conn->close();
+              ?>
                 </tbody>
               </table>
             </div>
@@ -192,3 +160,23 @@
 
 
 <?php include 'footer.php'; ?>
+
+<script>
+  $(function() {
+    $("#tableList").DataTable({
+      "searching": false,
+      "lengthChange": false,
+      "pageLength": 10
+    })
+    $("#btnSearch").click(searchlist);
+  });
+
+  function searchlist() {
+    var type = $("input[name='type']:checked").val();;
+    var issue = $("#txtIssue").val();
+    var deliver = $("#txtDelivered").val() == "on";
+    var active = $("#txtActive").val() == "on";
+    var url = window.location.origin + window.location.pathname + "?type=" + type + "&issue=" + issue + "&deliver=" + deliver + "&active=" + active;
+    window.location.href = url;
+  }
+</script>

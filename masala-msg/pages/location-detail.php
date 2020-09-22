@@ -42,12 +42,29 @@
                                             <div class="text-right textDetail">Category : </div>
                                         </div>
                                         <div class="col-md-9">
-                                            <select name="" class="form-control" id="">
-                                                <option value=""></option>
-                                                <option value="">1</option>
-                                                <option value="">2</option>
-                                                <option value="">3</option>
-                                            </select>
+                                            <input list="brow" class="custom-select form-control" name="location-detail-catgory" placeholder="Location Name" value="<?php echo $row["category_name"]; ?>">
+                                            <datalist id="brow">
+                                    <?php
+                    
+                                                $sql = "SELECT category_name
+                                                        FROM `category` ";
+    
+                                                $result = $conn->query($sql);
+
+                                                if ($result->num_rows > 0) {
+                                        // output data of each row
+                                                while ($row = $result->fetch_assoc()) {
+                                    ?>
+                                                <option value="<?php echo $row["category_name"]; ?>"></option>
+                                    <?php
+                                                }
+                                                } else {
+
+                                                }
+
+                                    $conn->close();
+                                    ?>
+                                            </datalist>
                                         </div>
                                     </div>
                                     <br>

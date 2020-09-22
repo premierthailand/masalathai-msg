@@ -18,41 +18,52 @@
                     </div>
                     <div class="col-md-12">
                         <div class="card-body" style="padding-left: 5%;">
-                            <form method="get">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <div class="form-group bmd-form-group">
-                                            <input list="brow" class="custom-select form-control" name="location-category" placeholder="Category">
-                                            <datalist id="brow">
-                                                <option value="Hotel"></option>
-                                                <option value="School"></option>
-                                                <option value="Hospital"></option>
-                                            </datalist>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group bmd-form-group">
-                                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Search..." name="location-search">
-                                        </div>
-                                    </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group bmd-form-group">
+                                        <input list="categoryLocation" id="txtCategory" class="custom-select form-control" name="location-category" placeholder="Category">
+                                        <datalist id="categoryLocation">
+                                            <?php
 
-                                    <div class="col-md-2 ">
-                                        <button type="submit" class="btn btn-masala pull-left">Search</button>
-                                        <div class="clearfix"></div>
+                                            $sql = "SELECT category_name
+                                            FROM `category` ";
+
+                                            $result = $conn->query($sql);
+
+                                            if ($result->num_rows > 0) {
+                                                // output data of each row
+                                                while ($row = $result->fetch_assoc()) {
+                                            ?>
+                                                    <option value="<?php echo $row["category_name"]; ?>"></option>
+                                            <?php
+                                                }
+                                            } 
+                                            ?>
+                                        </datalist>
                                     </div>
                                 </div>
-                            </form>
+                                <div class="col-md-3">
+                                    <div class="form-group bmd-form-group">
+                                        <input type="email" class="form-control" id="txtSearch" placeholder="Search..." name="location-search">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2 ">
+                                    <button class="btn btn-masala pull-left" id="btnSearch">Search</button>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table" id="tableLocation">
                                 <thead class="font-weight-bold">
                                     <tr class="text-center">
                                         <td width="3%">No.</td>
-                                        <td width="15%">Location Name</td>
+                                        <td width="10%">Location Name</td>
                                         <td width="30%">Address</td>
-                                        <td width="5%">Number of Copies</td>
+                                        <td width="10%">Number of Copies</td>
                                         <td width="10%">Contact Person</td>
                                         <td width="12%">Phone</td>
                                         <td width="15%">Category</td>
@@ -62,29 +73,30 @@
                                 <tbody>
 
                                     <?php
-                                    $No=0;
-                                    $sql = "SELECT  location_id,
-                                                    location_name,
-                                                    location_address,
-                                                    location_count,
-                                                    location_contact_name,
-                                                    location_contact_phone,
-                                                    category_name 
-                                            FROM location 
-                                            INNER JOIN category ON 
-                                                    location.location_category_id=category.category_id where Location_isActive=1" ;
+                                    $No = 0;
+                                    $sql = "SELECT `location_id`,`location_name`,`location_address`,`location_count`,`location_contact_name`,`location_contact_phone`,`category_name` 
+                                            FROM `location` 
+                                            INNER JOIN category ON location.`location_category_id`=category.category_id 
+                                            WHERE `Location_isActive`=1 
+                                            AND category_name like'%" . $_REQUEST["category"] . "%'
+                                            AND (location_name like'%" . $_REQUEST["search"] . "%'
+                                            OR location_address like'%" . $_REQUEST["search"] . "%'
+                                            OR location_count like'%" . $_REQUEST["search"] . "%'
+                                            OR location_contact_name like'%" . $_REQUEST["search"] . "%'
+                                            OR location_contact_phone like'%" . $_REQUEST["search"] . "%'
+                                             )";
                                     $result = $conn->query($sql);
 
                                     if ($result->num_rows > 0) {
                                         // output data of each row
                                         while ($row = $result->fetch_assoc()) {
-                                            $No++;
+                                            $No++
                                     ?>
 
 
 
                                             <tr class="text-center">
-                                                <td><?php echo $No?></td>
+                                                <td><?php echo $No; ?></td>
                                                 <td class="text-left"><?php echo $row["location_name"]; ?></td>
                                                 <td class="text-left"><?php echo $row["location_address"]; ?></td>
                                                 <td><?php echo $row["location_count"]; ?></td>
@@ -97,15 +109,16 @@
                                                             <i class="material-icons">edit</i>
                                                         </button>
                                                     </a>
-                                                    <button type="button" rel="tooltip" class="btn btn-danger" data-original-title="" title="">
-                                                        <i class="material-icons">close</i>
-                                                    </button>
+                                                    <a href="location-deactive?id=<?php echo $row["location_id"]; ?>">
+                                                        <button type="button" rel="tooltip" class="btn btn-danger" data-original-title="" title="">
+                                                            <i class="material-icons">close</i>
+                                                        </button>
+                                                    </a>
                                                 </td>
                                             </tr>
                                     <?php
                                         }
                                     } else {
-                                        echo "<script type='text/javascript'>alert('Error : Database Connection Failed');</script>";
                                     }
 
                                     $conn->close();
@@ -121,3 +134,22 @@
 </div>
 
 <?php include 'footer.php'; ?>
+
+<script>
+    var searchParams = new URLSearchParams(window.location.search);
+    $(function() {
+        $("#tableLocation").DataTable({
+            "searching": false,
+            "lengthChange": false,
+            "pageLength": 10
+        })
+        $("#btnSearch").click(searchLocation);
+    });
+
+    function searchLocation() {
+        var category = $("#txtCategory").val();
+        var search = $("#txtSearch").val();
+        var url = window.location.origin + window.location.pathname + "?category=" + category + "&search=" + search;
+        window.location.href = url;
+    }
+</script>

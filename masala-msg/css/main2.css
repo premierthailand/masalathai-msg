@@ -1,4 +1,4 @@
-.datail-type-margin{
+.detail-type-margin{
     margin-right:30px;
 }
 .textDetail{
@@ -30,4 +30,8 @@ input[type=number] {
   left: px;
   bottom: 0;
   text-align: center;
+}
+
+.form-check .form-check-input:checked~.form-check-sign .check{
+  background: #b4292d;
 }

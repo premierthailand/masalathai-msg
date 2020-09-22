@@ -20,26 +20,52 @@
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="form-group bmd-form-group">
-                                        <input type="text" id="txtDate" class="form-control datetimepicker" name="date-msg" placeholder="Date" value="<?php echo $_REQUEST["date"]?>">
+                                        <input type="text" id="txtDate" class="form-control datetimepicker" name="date-msg" placeholder="Date" value="<?php echo $_REQUEST["date"] ?>">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group bmd-form-group">
-                                        <input list="messengerReport" class="custom-select form-control" id="txtMessenger" name="name-msg" placeholder="Messenger Name" value="<?php echo $_REQUEST["messenger"]?>">
+                                        <input list="messengerReport" class="custom-select form-control" id="txtMessenger" name="name-msg" placeholder="Messenger Name" value="<?php echo $_REQUEST["messenger"] ?>">
                                         <datalist id="messengerReport">
-                                            <option value="Somporn Sompong"></option>
-                                            <option value="Srisan wompong"></option>
-                                            <option value="Song wannawong"></option>
+                                            <?php
+
+                                            $sql = "SELECT messenger_name
+                                            FROM `messenger` ";
+
+                                            $result = $conn->query($sql);
+
+                                            if ($result->num_rows > 0) {
+                                                // output data of each row
+                                                while ($row = $result->fetch_assoc()) {
+                                            ?>
+                                                    <option value="<?php echo $row["messenger_name"]; ?>"></option>
+                                            <?php
+                                                }
+                                            }
+                                            ?>
                                         </datalist>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group bmd-form-group">
-                                        <input list="locationReport" class="custom-select form-control" id="txtLocation" name="report-msg" placeholder="Location Name" value="<?php echo $_REQUEST["location"]?>">
+                                        <input list="locationReport" class="custom-select form-control" id="txtLocation" name="report-msg" placeholder="Location Name" value="<?php echo $_REQUEST["location"] ?>">
                                         <datalist id="locationReport">
-                                            <option value="Asok"></option>
-                                            <option value="Sukhumvit"></option>
-                                            <option value="Srinakarin"></option>
+                                            <?php
+
+                                            $sql = "SELECT location_name
+                                            FROM `location` ";
+
+                                            $result = $conn->query($sql);
+
+                                            if ($result->num_rows > 0) {
+                                                // output data of each row
+                                                while ($row = $result->fetch_assoc()) {
+                                            ?>
+                                                    <option value="<?php echo $row["location_name"]; ?>"></option>
+                                            <?php
+                                                }
+                                            }
+                                            ?>
                                         </datalist>
                                     </div>
                                 </div>
@@ -53,7 +79,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table" id="example" width="100%">
+                            <table class="table" id="tableReport" width="100%">
                                 <thead class="font-weight-bold">
                                     <tr class="text-center">
                                         <td width="5%">No.</td>
@@ -65,21 +91,19 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php
 
-
-                                <?php
-                                    
-                                    $No=0;
+                                    $No = 0;
                                     $date = date_create($_REQUEST['date']);
-                                    $selecttime = date_format($date,"Y-m-d");
+                                    $selecttime = date_format($date, "Y-m-d");
                                     $sql = "SELECT `transection_id`,`transection_delivery_date`,`messenger_name`,`location_name`,`location_address`,`location_count` 
                                             FROM location
                                             INNER JOIN transection  ON transection.location_id = location.location_id
                                             INNER JOIN messenger ON messenger.messenger_id = transection.messenger_id
                                             WHERE `Location_isActive`=1 
                                             AND transection_delivery_date='$selecttime' 
-                                                 AND messenger_name LIKE '%".$_REQUEST["messenger"]."%' 
-                                                 AND location_name LIKE '%".$_REQUEST["location"]."%'";
+                                                 AND messenger_name LIKE '%" . $_REQUEST["messenger"] . "%' 
+                                                 AND location_name LIKE '%" . $_REQUEST["location"] . "%'";
                                     $result = $conn->query($sql);
 
                                     if ($result->num_rows > 0) {
@@ -87,25 +111,21 @@
                                         while ($row = $result->fetch_assoc()) {
                                             $No++;
                                     ?>
-                                    <tr class="text-center">
-                                        <?php
+                                            <tr class="text-center">
+                                                <?php
                                                 $showdate = date_create($row["transection_delivery_date"]);
-                                                $showtime = date_format($showdate,"d-m-Y");
+                                                $showtime = date_format($showdate, "d-m-Y");
 
-                                        ?>
-                                        <td><?php echo $No?></td>
-                                        <td class="text-left"><?php echo $row["messenger_name"]; ?></td>
-                                        <td><?php echo $showtime?></td>
-                                        <td class="text-left"><?php echo $row["location_name"]; ?></td>
-                                        <td class="text-left"><?php echo $row["location_address"]; ?></td>
-                                        <td><?php echo $row["location_count"]; ?></td>
-                                    </tr>
+                                                ?>
+                                                <td><?php echo $No ?></td>
+                                                <td class="text-left"><?php echo $row["messenger_name"]; ?></td>
+                                                <td><?php echo $showtime ?></td>
+                                                <td class="text-left"><?php echo $row["location_name"]; ?></td>
+                                                <td class="text-left"><?php echo $row["location_address"]; ?></td>
+                                                <td><?php echo $row["location_count"]; ?></td>
+                                            </tr>
                                     <?php
                                         }
-                                    } else {
-                                        
-                                        echo "<script type='text/javascript'>alert('Error : Database Connection Failed');</script>";
-                                        
                                     }
 
                                     $conn->close();
@@ -123,12 +143,16 @@
 <?php include 'footer.php'; ?>
 <script>
     $(function() {
-
-        $("#btnSearch").click(SeaarchReport);
+        $("#tableReport").DataTable({
+            "searching": false,
+            "lengthChange": false,
+            "pageLength": 10
+        });
+        $("#btnSearch").click(SearchReport);
 
     });
 
-    function SeaarchReport() {
+    function SearchReport() {
         var date = $("#txtDate").val();
         var messenger = $("#txtMessenger").val();
         var location = $("#txtLocation").val();

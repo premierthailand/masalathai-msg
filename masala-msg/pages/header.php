@@ -16,7 +16,6 @@
   <link href="../css/font-awesome.min.css" rel="stylesheet" />
   <link href="../css/dataTables.bootstrap4.min.css" rel="stylesheet" />
   <link href="../css/docs.css" rel="stylesheet" />
-  <link href="../css/nav.css" rel="stylesheet" />
   <link href="../css/datetimepicker.css" rel="stylesheet" />
   <link href="../css/main.css" rel="stylesheet" />
   <link href="../css/main2.css" rel="stylesheet" />
