@@ -4,8 +4,6 @@
 
 <div class="content">
     <div class="container-fluid">
-        <!-- <button type="btn" class="btn btn-success">+ Add</button> -->
-
         <div class="row">
             <div class="col-lg-12 col-md-12">
                 <div class="card">
@@ -94,18 +92,25 @@
                                     <?php
 
                                     $No = 0;
-                                    $date = date_create($_REQUEST['date']);
-                                    $selecttime = date_format($date, "Y-m-d");
+                                    $inputDate=$_REQUEST['date'];
+                                    $date = date_create($inputDate);
+                                    $selectTime = date_format($date, "Y-m-d");
+                                    if ($inputDate==''){
+                                        $dateDB ="";
+                                    } else {
+                                        $dateDB ="AND transection_delivery_date = '$selectTime'";
+                                    }
+                                    
                                     $sql = "SELECT `transection_id`,`transection_delivery_date`,`messenger_name`,`location_name`,`location_address`,`location_count` 
                                             FROM location
                                             INNER JOIN transection  ON transection.location_id = location.location_id
                                             INNER JOIN messenger ON messenger.messenger_id = transection.messenger_id
                                             WHERE `Location_isActive`=1 
-                                            AND transection_delivery_date='$selecttime' 
-                                                 AND messenger_name LIKE '%" . $_REQUEST["messenger"] . "%' 
-                                                 AND location_name LIKE '%" . $_REQUEST["location"] . "%'";
+                                            $dateDB
+                                                AND messenger_name LIKE '%" . $_REQUEST["messenger"] . "%' 
+                                                AND location_name LIKE '%" . $_REQUEST["location"] . "%'";
                                     $result = $conn->query($sql);
-
+                                                
                                     if ($result->num_rows > 0) {
                                         // output data of each row
                                         while ($row = $result->fetch_assoc()) {

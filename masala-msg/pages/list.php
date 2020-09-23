@@ -19,14 +19,32 @@
                 <!-- Magazine Type -->
                 <div class="form-check form-check-radio">
                   <label class="form-check-label detail-type-margin col-md-3">
-                    <input class="form-check-input" type="radio" name="type" value="masala" checked>
+                    <input class="form-check-input" type="radio" name="type" value="masala" 
+                    <?php
+                        if($_REQUEST["type"]=='' ){
+                          echo "checked";
+                        } elseif($_REQUEST["type"]=='masala' ){
+                          echo "checked";
+                        } else {
+                          echo "";
+                        }
+                    ?>
+                    >
                     Masala
                     <span class="circle">
                       <span class="check"></span>
                     </span>
                   </label>
                   <label class="form-check-label col-md-6">
-                    <input class="form-check-input" type="radio" name="type" value="lite">
+                    <input class="form-check-input" type="radio" name="type" value="lite" 
+                    <?php
+                       if($_REQUEST["type"]=='lite' ){
+                          echo "checked";
+                        } else {
+                          echo "";
+                        }
+                    ?>
+                    >
                     Masala LITE
                     <span class="circle">
                       <span class="check"></span>
@@ -34,39 +52,84 @@
                   </label>
                 </div>
                 <hr />
-                <!-- Issue -->
+                <!-- Issue Masala-->
                 <div class="form-group no-margin-top">
-                  <input list="issueList" id="txtIssue" class="custom-select form-control" name="issue" placeholder="=== All Issue ===">
-                  <datalist id="issueList">
+                  <input list="issueList" id="txtIssue" class="custom-select form-control" name="issue" placeholder="=== All Issue ===" value="<?php echo  $_REQUEST["issue"];?>">
+                  <datalist id="issueList" class="text-left">
                     <?php
-                    $sql = "SELECT issue_name
-                    FROM `issue` 
-                    Where issue_id != 0";
+                    $sql = "SELECT magazineVol_Month,magazineVol_Year
+                    FROM `magazineVol` Where magazineType_id=1 
+                    ORDER BY magazineVol_Year DESC, CAST(magazineVol_Month_id AS int) DESC ";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                      // output data of each row
+                      while ($row = $result->fetch_assoc()) {
+                       ?>
+                          <option value="<?php echo $row["magazineVol_Month"]; ?>"></option>
+                     
+                      <?php
+                        }
+                      }
+                    
+                    ?>
+                  </datalist>
+                </div>
 
+
+                 <!-- Issue Masala Lite-->
+                 <div class="form-group no-margin-top">
+                  <input list="issueListLite" id="txtLite" class="custom-select form-control" name="issue1" placeholder="=== All Issue ===" value="<?php echo  $_REQUEST["lite"];?>">
+                  <datalist id="issueListLite">
+                    <?php
+                    $sql = "SELECT magazineVol_Month,magazineVol_Year
+                    FROM `magazineVol` Where magazineType_id=2
+                    ORDER BY magazineVol_Year DESC, CAST(magazineVol_Month_id AS int) DESC ";
                     $result = $conn->query($sql);
 
                     if ($result->num_rows > 0) {
                       // output data of each row
                       while ($row = $result->fetch_assoc()) {
                     ?>
-                        <option value="<?php echo $row["issue_name"]; ?>"></option>
+                        <option value="<?php echo $row["magazineVol_Month"]; ?>"></option>
                     <?php
                       }
                     }
                     ?>
                   </datalist>
                 </div>
+
+
                 <!-- Delivered -->
                 <div class="form-check form-check-radio">
                   <label class="form-check-label detail-type-margin col-md-3">
-                    <input class="form-check-input" type="checkbox" name="deliver" id="txtDelivered" checked>
+                    <input class="form-check-input" type="checkbox" name="deliver" id="txtDelivered" 
+                    <?php
+                        if($_REQUEST["deliver"]=='' ){
+                          echo "checked";
+                        } elseif($_REQUEST["deliver"]=='1' ){
+                          echo "checked";
+                        } else {
+                          echo "";
+                        }
+                    ?>
+                    >
                     Delivered
                     <span class="form-check-sign">
                       <span class="check"></span>
                     </span>
                   </label>
                   <label class="form-check-label col-md-3">
-                    <input class="form-check-input" type="checkbox" name="active" id="txtActive" checked>
+                    <input class="form-check-input" type="checkbox" name="active" id="txtActive" 
+                    <?php
+                        if($_REQUEST["active"]=='' ){
+                          echo "checked";
+                        } elseif($_REQUEST["active"]=='1' ){
+                          echo "checked";
+                        } else {
+                          echo "";
+                        }
+                    ?>
+                    >
                     Active
                     <span class="form-check-sign">
                       <span class="check"></span>
@@ -96,23 +159,66 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                  
                     <?php
-
+          
                     $No = 0;
-                    $date = date_create($row["transection_delivery_date"]);
-                    $listtime = date_format($date, "d-m-Y");
-                    $sql = "SELECT location_name,messenger_name,transection_delivery_date,transection_img,issue_name 
+                    
+
+                    
+                    if ($_REQUEST["type"]==''){
+                      $dataDB ="AND magazineType_name ='masala'";
+                    } elseif($_REQUEST["type"]!=='') {
+                        $dataDB ="AND magazineType_name ='" . $_REQUEST["type"] . "'";
+                    }
+
+                    
+                    if($_REQUEST["deliver"]=='' ){
+                      $activeDB ="AND transection_isActive ='1'";
+                    } elseif($_REQUEST["active"]!=='' ){
+                      $activeDB ="AND transection_isActive ='" . $_REQUEST["active"] . "'";
+                    }
+
+                    if($_REQUEST["deliver"]!='0' ){
+                      $deliverDB ="AND transection_img is not null AND transection_img != ''";
+                    } elseif($_REQUEST["deliver"]=='0' ){
+                      $deliverDB ="AND (transection_img is null OR transection_img ='')";
+                    } 
+                    if($_REQUEST["issue"]=='' ){
+                      $issueDB ="";
+                    } elseif($_REQUEST["issue"]!=='' ){
+                      $issueDB ="AND magazineVol.magazineVol_Month ='" . $_REQUEST["issue"] . "'";
+                    }
+                    if($_REQUEST["lite"]=='' ){
+                      $liteDB ="";
+                    } elseif($_REQUEST["lite"]!=='' ){
+                      $liteDB ="AND magazineVol.magazineVol_Month ='" . $_REQUEST["lite"] . "'";
+                    }
+                    $sql = "SELECT transection_id,location_name,messenger_name,transection_delivery_date,transection_img,magazineVol_Month,magazineVol_Year 
                     FROM messenger 
                         INNER JOIN transection  ON transection.messenger_id = messenger.messenger_id
                         INNER JOIN location  ON location.location_id = transection.location_id
-                        INNER JOIN issue  ON issue.issue_id = transection.issue_id";
+                        INNER JOIN magazineVol  ON magazineVol.magazineVol_id = transection.magazineVol_id
+                        INNER JOIN magazinetype  ON magazinetype.magazineType_id = magazineVol.magazineType_id
+                        WHERE 1=1
+                            $dataDB
+                            $activeDB
+                            $deliverDB
+                            $issueDB
+                            $liteDB  
+                           ";
+                           
                     $result = $conn->query($sql);
+
                     if ($result->num_rows > 0) {
+                      
                       // output data of each row
                       while ($row = $result->fetch_assoc()) {
                         $No++;
+                        $date = date_create($row["transection_delivery_date"]);
+                        $listtime = date_format($date, "d-m-Y");
                     ?>
+                    <tr>
                         <td class="text-center"><?php echo $No;?></td>
                         <td><?php echo $row["messenger_name"]; ?></td>
                         <td><?php echo $row["location_name"]; ?></td>
@@ -128,18 +234,20 @@
                            ?>
 
                         </td>
-                        <td><?php echo $row["issue_name"]; ?></td>
+                        <td class="text-center"><?php echo $row["magazineVol_Month"]; ?></td>
                         <td class="text-center"><?php echo $listtime; ?></td>
                         <td class="td-actions text-center">
-                          <button type="button" rel="tooltip" class="btn btn-info" data-original-title="" title="">
+                          <button type="button" rel="tooltip" class="btn btn-info" onclick="showImage('../img/Masala-Logo-1.png','200','300')"><!-- url , height , width -->
                             <i class="material-icons">image_search</i>
                           </button>
+                          
                           <button type="button" rel="tooltip" class="btn btn-success" data-original-title="" title="">
                             <i class="material-icons">edit</i>
                           </button>
-                          <button type="button" rel="tooltip" class="btn btn-danger" data-original-title="" title="">
+                          <button type="button" rel="tooltip" class="btn btn-danger" onclick="deactivate()">
                             <i class="material-icons">close</i>
                           </button>
+
                         </td>
                   </tr>
               <?php
@@ -174,9 +282,10 @@
   function searchlist() {
     var type = $("input[name='type']:checked").val();;
     var issue = $("#txtIssue").val();
-    var deliver = $("#txtDelivered").val() == "on";
-    var active = $("#txtActive").val() == "on";
-    var url = window.location.origin + window.location.pathname + "?type=" + type + "&issue=" + issue + "&deliver=" + deliver + "&active=" + active;
+    var lite = $("#txtLite").val();
+    var deliver = $("#txtDelivered").is( ":checked")? 1 : 0;
+    var active = $("#txtActive").is( ":checked")? 1 : 0
+    var url = window.location.origin + window.location.pathname + "?type=" + type + "&issue=" + issue + "&lite=" + lite + "&deliver=" + deliver + "&active=" + active;
     window.location.href = url;
   }
 </script>

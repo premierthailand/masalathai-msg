@@ -4,7 +4,7 @@
 
 <div class="content">
     <div class="container-fluid">
-        <a href="./location-detail">
+        <a href="./location-edit">
             <button type="btn" class="btn btn-masala">+ Add</button>
         </a>
         <div class="row delivery-padding-top" style="padding-top: 20px;">
@@ -21,7 +21,7 @@
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="form-group bmd-form-group">
-                                        <input list="categoryLocation" id="txtCategory" class="custom-select form-control" name="location-category" placeholder="Category">
+                                        <input list="categoryLocation" id="txtCategory" class="custom-select form-control" name="location-category" placeholder="Category" value="<?php echo $_REQUEST["category"] ?>">
                                         <datalist id="categoryLocation">
                                             <?php
 
@@ -44,7 +44,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group bmd-form-group">
-                                        <input type="email" class="form-control" id="txtSearch" placeholder="Search..." name="location-search">
+                                        <input type="email" class="form-control" id="txtSearch" placeholder="Search..." name="location-search" value="<?php echo $_REQUEST["search"] ?>">
                                     </div>
                                 </div>
 
@@ -57,7 +57,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table" id="tableLocation">
+                            <table class="table" id="tableLocation" width="100%">
                                 <thead class="font-weight-bold">
                                     <tr class="text-center">
                                         <td width="3%">No.</td>

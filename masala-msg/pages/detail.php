@@ -126,7 +126,7 @@
                                         <div class="text-right textDetail">Messenger Name : </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group detail-date-margin">
+                                        <div class="form-group detail-date-margin no-margin-top">
                                             <input list="messengerLocation" class="custom-select form-control" name="txtMessenger" id="txtMessenger">
                                             <datalist id="messengerLocation">
                                                 <?php
@@ -190,7 +190,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <button class="btn btn-masala pull-left" id="btnSearch">Save</button>
+                                            <button class="btn btn-masala pull-left" id="btnSave">Save</button>
                                         </div>
                                     </div>
                                 </div>
@@ -206,40 +206,51 @@
 
 <script>
     $(function() {
-        $("#btnSearch").click(clickSearch);
+        $("#btnSave").click(clickSave);
     });
-    function clickSearch(){
-        var magazine =  $("input[name='txtMagazine']:checked"). val();
+
+    function clickSave() {
+        var magazine = $("input[name='txtMagazine']:checked").val();
         var date = $("#txtDate").val();
         var vol = $("#txtVol").val();
         var location = $("#txtLocation").val();
         var messenger = $("#txtMessenger").val();
         var image = $("#txtImage").val();
         var issue = $("#txtIssue").val();
-        if(date.length==0){
-            alert("Please Enter Delivery Date");
+        if (date.length == 0) {
+            alert("Please Enter Delivery Date.");
             return;
         }
-        if(vol.length==0){
+        if (vol.length == 0) {
             alert("Please Enter Magazine Vol.");
             return;
         }
-        if(location.length==0){
-            alert("Please Enter Location Name");
+        if (location.length == 0) {
+            alert("Please Enter Location Name.");
             return;
         }
-        if(messenger.length==0){
-            alert("Please Enter Messenger Name");
+        var chkLocation = $("#detailLocation").find("option[value='" + location + "']");
+        if (chkLocation.length ==0) {
+            alert("Please Enter a Valid Location Name.");
+            return;
+        }
+        if (messenger.length == 0) {
+            alert("Please Enter Messenger Name.");
+            return;
+        }
+        var chkMessenger = $("#messengerLocation").find("option[value='" + messenger + "']");
+        if (chkMessenger.length ==0) {
+            alert("Please Enter a Valid Messenger Name.");
             return;
         }
 
-        var url = window.location.origin + window.location.pathname +"-add.php?magazine=" + magazine 
-                    + "&date=" + date
-                    + "&vol=" + vol
-                    + "&location=" + location
-                    + "&messenger=" + messenger
-                    + "&image=" + image
-                    + "&issue=" + issue;
+        var url = window.location.origin + window.location.pathname + "-update.php?magazine=" + magazine +
+            "&date=" + date +
+            "&vol=" + vol +
+            "&location=" + location +
+            "&messenger=" + messenger +
+            "&image=" + image +
+            "&issue=" + issue;
         window.location.href = url;
     }
 </script>
