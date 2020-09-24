@@ -8,7 +8,7 @@ $sql =  " UPDATE location
 $result = mysqli_query($conn, $sql);
 if (isset($result)) {
 
-    header("Location: ./location.php");
+    header("Location: ./location");
 
 } else {
         echo "Error Remove record: " . $conn->error;

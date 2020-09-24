@@ -203,7 +203,7 @@ if ($result->num_rows > 0) {
                                             <div class="text-right textDetail">Number of Copies : </div>
                                         </div>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="location-detail-copy" id="txtCopy" value="1">
+                                            <input type="number" class="form-control" name="location-detail-copy" id="txtCopy" value="">
                                         </div>
                                     </div>
                                     <br>
@@ -276,24 +276,29 @@ $conn->close();
 
         if (location.length == 0) {
             alert("Please Enter Location Name");
+            $("#txtLocation").focus();
             return;
         }
         if (address.length == 0) {
             alert("Please Enter Address");
+            $("#txtAddress").focus();
             return;
         }
         if (category.length == 0) {
             alert("Please Enter Category");
+            $("#txtCategory").focus();
             return;
         }
         var chkCategory = $("#locationCategory").find("option[value='" + category + "']");
         if (chkCategory.length ==0) {
             alert("Please Enter a Valid Category.");
+            $("#txtCategory").focus();
             return;
         }
 
         if (copy.length == 0) {
             alert("Please Enter Number of Copies");
+            $("#txtCopy").focus();
             return;
         }
 

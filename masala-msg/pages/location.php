@@ -37,7 +37,7 @@
                                                     <option value="<?php echo $row["category_name"]; ?>"></option>
                                             <?php
                                                 }
-                                            } 
+                                            }
                                             ?>
                                         </datalist>
                                     </div>
@@ -84,7 +84,8 @@
                                             OR location_count like'%" . $_REQUEST["search"] . "%'
                                             OR location_contact_name like'%" . $_REQUEST["search"] . "%'
                                             OR location_contact_phone like'%" . $_REQUEST["search"] . "%'
-                                             )";
+                                            )
+                                            ORDER BY location_name ASC";
                                     $result = $conn->query($sql);
 
                                     if ($result->num_rows > 0) {
@@ -105,15 +106,13 @@
                                                 <td><?php echo $row["category_name"]; ?></td>
                                                 <td class="td-actions text-center">
                                                     <a href="location-edit?id=<?php echo $row["location_id"]; ?>">
-                                                        <button type="button" rel="tooltip" class="btn btn-success" data-original-title="" title="">
+                                                        <button type="button" class="btn btn-success">
                                                             <i class="material-icons">edit</i>
                                                         </button>
                                                     </a>
-                                                    <a href="location-deactive?id=<?php echo $row["location_id"]; ?>">
-                                                        <button type="button" rel="tooltip" class="btn btn-danger" data-original-title="" title="">
-                                                            <i class="material-icons">close</i>
-                                                        </button>
-                                                    </a>
+                                                    <button type="button" class="btn btn-danger" onclick="deactivateLocation(<?php echo $row['location_id']; ?>,'<?php echo $row['location_name']; ?>')">
+                                                        <i class="material-icons">close</i>
+                                                    </button>
                                                 </td>
                                             </tr>
                                     <?php
@@ -151,5 +150,34 @@
         var search = $("#txtSearch").val();
         var url = window.location.origin + window.location.pathname + "?category=" + category + "&search=" + search;
         window.location.href = url;
+    }
+
+    function deactivateLocation(id, name) {
+        Swal.fire({
+            title: 'Deactive ' + name + ' ?',
+            text: "You won't be able to revert this!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#f44336',
+            cancelButtonColor: '#AAA',
+            confirmButtonText: 'Yes, Deactive it!'
+        }).then((result) => {
+            if (result.value) {
+                Swal.fire({
+                    title: 'Deactiveted!',
+                    type: 'success',
+                    confirmButtonText: 'OK!'
+                }).then((result) => {
+                    if (result.value) {
+                        var category = $("#txtCategory").val();
+                        var search = $("#txtSearch").val();
+                        var url = window.location.origin + window.location.pathname + "-deactive?id=" + id +
+                            "&category=" + category +
+                            "&search=" + search;
+                        window.location.href = url;
+                    }
+                })
+            }
+        })
     }
 </script>
