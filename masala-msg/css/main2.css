@@ -39,3 +39,25 @@ input[type=number] {
 .form-check .form-check-input:checked~.form-check-sign .check{
   background: #b4292d;
 }
+input::-webkit-calendar-picker-indicator {
+  opacity: 100;
+  cursor: pointer;
+}
+.red{
+  color:red;
+  font-size:12px;
+}
+.sidebar{
+  width:240px;
+}
+.sidebar .sidebar-wrapper{
+  width:240px;
+}
+.main-panel{
+  width:calc(100% - 240px);
+}
+/* Preview */
+.preview img{
+  margin-top:15px;
+   display: none;
+}

@@ -2,7 +2,6 @@ $(function () {
   setInputLeyUp();
   setDropdown();
 });
-
 function setInputLeyUp() {
   $("#myInput").on("keyup", function () {
     var value = $(this).val().toLowerCase();
@@ -112,6 +111,23 @@ function showImage(urlImage, height, width, name) {
     imageUrl: urlImage,
     imageHeight: height,
     imageWidth: width,
-    imageAlt: name
-  })
+    imageAlt: name,
+  });
+}
+function genGuid() {
+  return Math.random().toString(36).substring(2) + Date.now().toString(36);
+}
+function genFileName(type) {
+  return (
+    Math.random().toString(36).substring(2) +
+    Date.now().toString(36) +
+    "." +
+    type
+  );
+}
+function getFileType(image) {
+  return image.name.split(".")[1];
+}
+function isImage(image){
+  return (getFileType(image)=="png" || getFileType(image)=="jpg" || getFileType(image)=="jpeg")
 }

@@ -104,9 +104,12 @@ FROM messenger
                                                         <input list="detailLocation" class="custom-select form-control" name="txtLocation" id="txtLocation" value="<?php echo $row["location_name"]; ?>">
                                                         <datalist id="detailLocation">
                                                             <?php
-                                                            $sqlLocation = "SELECT location_id,location_name,location_address,location_count,category_name FROM location
-                                                INNER JOIN category ON location.`location_category_id`=category.category_id  WHERE Location_isActive='1'
-                                                     ";
+                                                            $sqlLocation = "SELECT location_id,location_name,location_address,location_count,category_name 
+                                                            FROM location
+                                                            INNER JOIN category ON location.`location_category_id`=category.category_id  
+                                                            WHERE Location_isActive='1'
+                                                            ORDER BY location_name ASC
+                                                            ";
 
                                                             $resultLocation = $conn->query($sqlLocation);
 
@@ -164,7 +167,8 @@ FROM messenger
                                                         <datalist id="messengerLocation">
                                                             <?php
                                                             $sqlmessenger = "SELECT messenger_name
-                                                    FROM `messenger` WHERE messenger_isActive='1'
+                                                            FROM `messenger` WHERE messenger_isActive='1'
+                                                            ORDER BY messenger_name ASC
                                                     ";
 
                                                             $resultmessenger = $conn->query($sqlmessenger);
@@ -181,6 +185,7 @@ FROM messenger
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <!-- Upload -->
                                             <div class="row detailMargin">
                                                 <div class="col-md-3">
@@ -320,8 +325,11 @@ FROM messenger
                                                 <input list="detailLocation" class="custom-select form-control" name="txtLocation" id="txtLocation">
                                                 <datalist id="detailLocation">
                                                     <?php
-                                                    $sql = "SELECT location_id,location_name,location_address,location_count,category_name FROM location
-                                                INNER JOIN category ON location.`location_category_id`=category.category_id  WHERE Location_isActive='1'
+                                                    $sql = "SELECT location_id,location_name,location_address,location_count,category_name 
+                                                    FROM location
+                                                    INNER JOIN category ON location.`location_category_id`=category.category_id  
+                                                    WHERE Location_isActive='1'
+                                                    ORDER BY location_name ASC
                                                      ";
 
                                                     $result = $conn->query($sql);
@@ -381,6 +389,7 @@ FROM messenger
                                                     <?php
                                                     $sql = "SELECT messenger_name
                                                     FROM `messenger` WHERE messenger_isActive='1'
+                                                    ORDER BY messenger_name ASC
                                                     ";
 
                                                     $result = $conn->query($sql);
@@ -403,7 +412,11 @@ FROM messenger
                                             <div class="text-right textDetail">Upload Photo : </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="file" id="txtImage" name="txtImage" accept=".jpg,.png,.jpeg">
+                                            <input type="file" id="txtImage" name="txtImage" accept="image/*">
+
+                                            <div class='preview'>
+                                                <img src="" id="img" width="auto" height="100">
+                                            </div>
                                         </div>
                                     </div>
                                     <!-- Comment -->
@@ -460,23 +473,40 @@ FROM messenger
 <?php include 'footer.php'; ?>
 
 <script>
+    var fileName = "";
     $(function() {
         $("#btnSave").click(clickSave);
         changeLocation();
         $("#txtLocation").change(changeLocation);
+        $("#txtImage").change(uploadImage);
     });
 
-    function changeLocation() {
-        var dataLocation = $("#detailLocation").find("option[value='" + $("#txtLocation").val() + "']");
-        if (dataLocation.length != 0) {
-            $("#lblAddress").html(dataLocation.attr("data-address"));
-            $("#lblCopy").html(dataLocation.attr("data-copies"));
-            $("#lblCategory").html(dataLocation.attr("data-catgory"));
-        } else {
-            $("#lblAddress").html("-");
-            $("#lblCopy").html("-");
-            $("#lblCategory").html("-");
-        }
+    function uploadImage() {
+        var fd = new FormData();
+        var tempFiles = $("#txtImage")[0].files[0]
+        fileName = genFileName(tempFiles.name.split(".")[1]);
+        var files = new File([tempFiles], fileName, {
+            type: tempFiles.type
+        });
+        fd.append('file', files);
+
+        $.ajax({
+            url: 'upload-image.php',
+            type: 'post',
+            data: fd,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                if (response != 0) {
+                    $("#img").attr("src", response);
+                    $(".preview img").show(); // Display image element
+                    return fileName;
+                } else {
+                    return "";
+                }
+            },
+        });
+
     }
 
     function clickSave() {
@@ -514,7 +544,16 @@ FROM messenger
             alert("Please Enter a Valid Messenger Name.");
             return;
         }
-
+        var image = $('#txtImage')[0].files;
+        if (image.length != 0) {
+            if (image[0].name.split(".").length == 1 || !isImage(image[0])) { //Chagen Type Image
+                return;
+            };
+            if (image[0].size >= 3000000) {
+                return;
+            }
+        }
+        image = fileName;
         var url = window.location.origin + window.location.pathname + "-update?id=" + id +
             "&magazine=" + magazine +
             "&date=" + date +
@@ -524,5 +563,18 @@ FROM messenger
             "&image=" + image +
             "&issue=" + issue;
         window.location.href = url;
+    }
+
+    function changeLocation() {
+        var dataLocation = $("#detailLocation").find("option[value='" + $("#txtLocation").val() + "']");
+        if (dataLocation.length != 0) {
+            $("#lblAddress").html(dataLocation.attr("data-address"));
+            $("#lblCopy").html(dataLocation.attr("data-copies"));
+            $("#lblCategory").html(dataLocation.attr("data-catgory"));
+        } else {
+            $("#lblAddress").html("-");
+            $("#lblCopy").html("-");
+            $("#lblCategory").html("-");
+        }
     }
 </script>

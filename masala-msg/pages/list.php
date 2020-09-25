@@ -15,124 +15,119 @@
           <div class="card-body">
             <br />
             <div class="row">
-              <div class="col-md-6">
-                <!-- Magazine Type -->
-                <div class="form-check form-check-radio">
-                  <label class="form-check-label detail-type-margin col-md-3">
-                    <input class="form-check-input" type="radio" name="type" value="masala" <?php
-                                                                                            if ($_REQUEST["type"] == '') {
-                                                                                              echo "checked";
-                                                                                            } elseif ($_REQUEST["type"] == 'masala') {
-                                                                                              echo "checked";
-                                                                                            } else {
-                                                                                              echo "";
-                                                                                            }
-                                                                                            ?>>
-                    Masala
-                    <span class="circle">
-                      <span class="check"></span>
-                    </span>
-                  </label>
-                  <label class="form-check-label col-md-6">
-                    <input class="form-check-input" type="radio" name="type" value="lite" <?php
-                                                                                          if ($_REQUEST["type"] == 'lite') {
-                                                                                            echo "checked";
-                                                                                          } else {
-                                                                                            echo "";
-                                                                                          }
-                                                                                          ?>>
-                    Masala LITE
-                    <span class="circle">
-                      <span class="check"></span>
-                    </span>
-                  </label>
+              <div class="col-md-12">
+                <div class="row">
+                  <div class="col-md-4">
+                    <!-- Magazine Type -->
+                    <div class="form-check form-check-radio">
+                      <label class="form-check-label col-md-5">
+                        <input class="form-check-input" type="radio" name="type" value="masala" <?php echo $_REQUEST["type"] != 'lite' ? "checked" : ""; ?>>
+                        Masala
+                        <span class="circle">
+                          <span class="check"></span>
+                        </span>
+                      </label>
+                      <label class="form-check-label col-md-6">
+                        <input class="form-check-input" type="radio" name="type" value="lite" <?php echo $_REQUEST["type"] == 'lite' ? "checked" : ""; ?>>
+                        Masala LITE
+                        <span class="circle">
+                          <span class="check"></span>
+                        </span>
+                      </label>
+                    </div>
+                  </div>
+                  <!-- Location name -->
+                  <div class="col-md-4">
+                    <div class="form-group no-margin-top">
+                      <input list="locationList" id="txtLocation" class="custom-select form-control" placeholder="=== Select Location Name ===" value="<?php echo $_REQUEST["location"]; ?>">
+                      <datalist id="locationList" class="text-left">
+                        <?php
+                        $sql = "SELECT location_name
+                        FROM `location` Where location_isActive 
+                        ORDER BY location_name ASC";
+                        $result = $conn->query($sql);
+                        if ($result->num_rows > 0) {
+                          while ($row = $result->fetch_assoc()) {
+                        ?>
+                            <option value="<?php echo $row["location_name"]; ?>"></option>
+                        <?php
+                          }
+                        }
+                        ?>
+                      </datalist>
+                    </div>
+                  </div>
                 </div>
-                <hr />
-                <!-- Issue Masala-->
-                <div class="form-group no-margin-top">
-                  <input list="issueList" style="<?php if ($_REQUEST["type"] == 'lite') echo "display:none"; ?>" id="txtIssue" class="custom-select form-control" name="issue" placeholder="=== Masala Issue ===" value="<?php 
-                                                                                                                                                                                                                                        if($_REQUEST["type"] != 'lite'){
-                                                                                                                                                                                                                                        echo  $_REQUEST["issue"];
-                                                                                                                                                                                                                                        } ?>">
-                  <datalist id="issueList" class="text-left">
-                    <?php
-                    $sql = "SELECT magazineVol_Month,magazineVol_Year
-                    FROM `magazineVol` Where magazineType_id=1 
-                    ORDER BY magazineVol_Year DESC, CAST(magazineVol_Month_id AS int) DESC ";
-                    $result = $conn->query($sql);
-                    if ($result->num_rows > 0) {
-                      // output data of each row
-                      while ($row = $result->fetch_assoc()) {
-                    ?>
-                        <option value="<?php echo $row["magazineVol_Month"]; ?>"></option>
-                    <?php
-                      }
-                    }
+              </div>
+              <div class="col-md-12">
+                <div class="row">
+                  <div class="col-md-4">
+                    <!-- Issue Masala-->
+                    <div class="form-group no-margin-top">
+                      <input list="issueList" style="<?php echo $_REQUEST["type"] == 'lite' ? "display:none" : ""; ?>" id="txtIssue" class="custom-select form-control" placeholder="=== Select Masala Issue ===" value="<?php echo $_REQUEST["type"] != 'lite' ?  $_REQUEST["issue"] : ""; ?>">
+                      <datalist id="issueList" class="text-left">
+                        <?php
+                        $sql = "SELECT magazineVol_Month,magazineVol_Year
+                      FROM `magazineVol` Where magazineType_id=1 
+                      ORDER BY magazineVol_Year DESC, CAST(magazineVol_Month_id AS int) DESC ";
+                        $result = $conn->query($sql);
+                        if ($result->num_rows > 0) {
+                          // output data of each row
+                          while ($row = $result->fetch_assoc()) {
+                        ?>
+                            <option value="<?php echo $row["magazineVol_Month"]; ?>"></option>
+                        <?php
+                          }
+                        }
 
-                    ?>
-                  </datalist>
-                  <input list="issueListLite" style="<?php if ($_REQUEST["type"] != 'lite') echo "display:none"; ?>" id="txtLite" class="custom-select form-control" name="issue1" placeholder="=== Masala Lite Issue ===" value="<?php 
-                                                                                                                                                                                                                                        if($_REQUEST["type"] == 'lite'){
-                                                                                                                                                                                                                                        echo  $_REQUEST["issue"];
-                                                                                                                                                                                                                                        } ?>">
-                  <datalist id="issueListLite">
-                    <?php
-                    $sql = "SELECT magazineVol_Month,magazineVol_Year
-                    FROM `magazineVol` Where magazineType_id=2
-                    ORDER BY magazineVol_Year DESC, CAST(magazineVol_Month_id AS int) DESC ";
-                    $result = $conn->query($sql);
+                        ?>
+                      </datalist>
+                      <input list="issueListLite" style="<?php echo $_REQUEST["type"] != 'lite' ?  "display:none" : ""; ?>" id="txtLite" class="custom-select form-control" placeholder="=== Select Masala Lite Issue ===" value="<?php echo $_REQUEST["type"] == 'lite' ? $_REQUEST["issue"] : ""; ?>">
+                      <datalist id="issueListLite">
+                        <?php
+                        $sql = "SELECT magazineVol_Month,magazineVol_Year
+                      FROM `magazineVol` Where magazineType_id=2
+                      ORDER BY magazineVol_Year DESC, CAST(magazineVol_Month_id AS int) DESC ";
+                        $result = $conn->query($sql);
 
-                    if ($result->num_rows > 0) {
-                      // output data of each row
-                      while ($row = $result->fetch_assoc()) {
-                    ?>
-                        <option value="<?php echo $row["magazineVol_Month"]; ?>"></option>
-                    <?php
-                      }
-                    }
-                    ?>
-                  </datalist>
+                        if ($result->num_rows > 0) {
+                          while ($row = $result->fetch_assoc()) {
+                        ?>
+                            <option value="<?php echo $row["magazineVol_Month"]; ?>"></option>
+                        <?php
+                          }
+                        }
+                        ?>
+                      </datalist>
+                    </div>
+                  </div>
                 </div>
-
-
-                <!-- Delivered -->
-                <div class="form-check form-check-radio">
-                  <label class="form-check-label detail-type-margin col-md-3">
-                    <input class="form-check-input" type="checkbox" name="deliver" id="txtDelivered" <?php
-                                                                                                      if ($_REQUEST["deliver"] == '') {
-                                                                                                        echo "checked";
-                                                                                                      } elseif ($_REQUEST["deliver"] == '1') {
-                                                                                                        echo "checked";
-                                                                                                      } else {
-                                                                                                        echo "";
-                                                                                                      }
-                                                                                                      ?>>
-                    Delivered
-                    <span class="form-check-sign">
-                      <span class="check"></span>
-                    </span>
-                  </label>
-                  <label class="form-check-label col-md-3">
-                    <input class="form-check-input" type="checkbox" name="active" id="txtActive" <?php
-                                                                                                  if ($_REQUEST["active"] == '') {
-                                                                                                    echo "checked";
-                                                                                                  } elseif ($_REQUEST["active"] == '1') {
-                                                                                                    echo "checked";
-                                                                                                  } else {
-                                                                                                    echo "";
-                                                                                                  }
-                                                                                                  ?>>
-                    Active
-                    <span class="form-check-sign">
-                      <span class="check"></span>
-                    </span>
-                  </label>
+              </div>
+              <div class="col-md-12">
+                <div class="row">
+                  <div class="col-md-4">
+                    <!-- Delivered -->
+                    <div class="form-check form-check-radio">
+                      <label class="form-check-label col-md-5">
+                        <input class="form-check-input" type="radio" name="deliver" value="1" <?php echo $_REQUEST["deliver"] != '0' ? "checked" : ""; ?>>
+                        Delivered
+                        <span class="circle">
+                          <span class="check"></span>
+                        </span>
+                      </label>
+                      <label class="form-check-label col-md-6">
+                        <input class="form-check-input" type="radio" name="deliver" value="0" <?php echo $_REQUEST["deliver"] == '0' ? "checked" : ""; ?>>
+                        No Delivered
+                        <span class="circle">
+                          <span class="check"></span>
+                        </span>
+                      </label>
+                    </div>
+                    <br />
+                    <button class="btn btn-masala pull-left" id="btnSearch">Search</button>
+                    <div class="clearfix"></div>
+                  </div>
                 </div>
-                <div class="form-check form-check-radio">
-                </div>
-                <br />
-                <button class="btn btn-masala pull-left" id="btnSearch">Search</button>
-                <div class="clearfix"></div>
               </div>
             </div>
             <br />
@@ -146,7 +141,7 @@
                     <td width="20%">Location</td>
                     <td width="15%">Status</td>
                     <td width="15%">Issue</td>
-                    <td width="10%">Delivery Time</td>
+                    <td width="10%">Delivery Date</td>
                     <td width="10%">Action</td>
                   </tr>
                 </thead>
@@ -177,7 +172,7 @@
                   } elseif ($_REQUEST["issue"] !== '') {
                     $issueDB = "AND magazineVol.magazineVol_Month ='" . $_REQUEST["issue"] . "'";
                   }
-                  
+
                   $sql = "SELECT transection_id,location_name,messenger_name,transection_delivery_date,transection_img,magazineVol_Month,magazineVol_Year 
                     FROM messenger 
                         INNER JOIN transection  ON transection.messenger_id = messenger.messenger_id
@@ -222,9 +217,16 @@
                         <td class="text-center"><?php echo $row["magazineVol_Month"]; ?></td>
                         <td class="text-center"><?php echo $listtime; ?></td>
                         <td class="td-actions text-center">
-                          <button type="button" rel="tooltip" class="btn btn-info" onclick="showImage('../img/<?php echo $image; ?>','','')">
+                          <?php 
+                          if($image!=''){
+
+                          ?>
+                          <button type="button" rel="tooltip" class="btn btn-info" onclick="showImage('../uploads/<?php echo $image; ?>','','')">
                             <i class="material-icons">image_search</i>
                           </button>
+                          <?php
+                          }
+                          ?>
                           <a href="./detail?id=<?php echo $row["transection_id"]; ?>">
                             <button type="button" class="btn btn-success">
                               <i class="material-icons">edit</i>
@@ -285,9 +287,8 @@
     if (type == "lite") {
       issue = $("#txtLite").val();
     }
-    var deliver = $("#txtDelivered").is(":checked") ? 1 : 0;
-    var active = $("#txtActive").is(":checked") ? 1 : 0
-    var url = window.location.origin + window.location.pathname + "?type=" + type + "&issue=" + issue + "&deliver=" + deliver + "&active=" + active;
+    var deliver = $("input[name='deliver']:checked").val();
+    var url = window.location.origin + window.location.pathname + "?type=" + type + "&issue=" + issue + "&deliver=" + deliver;
     window.location.href = url;
   }
 
@@ -313,13 +314,11 @@
             if (type == "lite") {
               issue = $("#txtLite").val();
             }
-            var deliver = $("#txtDelivered").is(":checked") ? 1 : 0;
-            var active = $("#txtActive").is(":checked") ? 1 : 0
+            var deliver = $("input[name='deliver']:checked").val();
             var url = window.location.origin + window.location.pathname + "-deactive?id=" + id +
               "&type=" + type +
               "&issue=" + issue +
-              "&deliver=" + deliver +
-              "&active=" + active;
+              "&deliver=" + deliver;
             window.location.href = url;
           }
         })

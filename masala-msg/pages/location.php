@@ -44,7 +44,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group bmd-form-group">
-                                        <input type="email" class="form-control" id="txtSearch" placeholder="Search..." name="location-search" value="<?php echo $_REQUEST["search"] ?>">
+                                    <input type="email" class="form-control" id="txtSearch" placeholder="Search..." name="location-search" value="<?php echo $_REQUEST["search"] ?>">
                                     </div>
                                 </div>
 
@@ -61,20 +61,21 @@
                                 <thead class="font-weight-bold">
                                     <tr class="text-center">
                                         <td width="3%">No.</td>
-                                        <td width="10%">Location Name</td>
-                                        <td width="30%">Address</td>
+                                        <td width="13%">Location Name</td>
+                                        <td width="28%">Address</td>
+                                        <td width="10%">Area</td>
                                         <td width="10%">Number of Copies</td>
                                         <td width="10%">Contact Person</td>
-                                        <td width="12%">Phone</td>
-                                        <td width="15%">Category</td>
-                                        <td width="10%">Action</td>
+                                        <td width="7%">Phone</td>
+                                        <td width="10%">Category</td>
+                                        <td width="15%">Action</td>
                                     </tr>
                                 </thead>
                                 <tbody>
 
                                     <?php
                                     $No = 0;
-                                    $sql = "SELECT `location_id`,`location_name`,`location_address`,`location_count`,`location_contact_name`,`location_contact_phone`,`category_name` 
+                                    $sql = "SELECT `location_id`,`location_name`,`location_houseno`,location_soi,location_road,location_District,location_Province,location_postno,location_area,img_status,location_img,location_count,location_contact_name,location_contact_phone,category_name 
                                             FROM `location` 
                                             INNER JOIN category ON location.`location_category_id`=category.category_id 
                                             WHERE `Location_isActive`=1 
@@ -99,12 +100,23 @@
                                             <tr class="text-center">
                                                 <td><?php echo $No; ?></td>
                                                 <td class="text-left"><?php echo $row["location_name"]; ?></td>
-                                                <td class="text-left"><?php echo $row["location_address"]; ?></td>
+                                                <td class="text-left">
+                                                    <?php echo $row["location_houseno"]; ?>
+                                                    <?php echo $row["location_soi"]; ?>
+                                                    <?php echo $row["location_road"]; ?>
+                                                    <?php echo $row["location_District"]; ?>
+                                                    <?php echo $row["location_Province"]; ?>
+                                                    <?php echo $row["location_postno"]; ?>
+                                                </td>
+                                                <td><?php echo $row["location_area"]; ?></td>
                                                 <td><?php echo $row["location_count"]; ?></td>
                                                 <td class="text-left"><?php echo $row["location_contact_name"]; ?></td>
                                                 <td><?php echo $row["location_contact_phone"]; ?></td>
                                                 <td><?php echo $row["category_name"]; ?></td>
                                                 <td class="td-actions text-center">
+                                                    <button type="button" rel="tooltip" class="btn btn-info" onclick="showImage('../img/<?php echo $row['location_img'];?>','','')">
+                                                        <i class="material-icons">image_search</i>
+                                                    </button>
                                                     <a href="location-edit?id=<?php echo $row["location_id"]; ?>">
                                                         <button type="button" class="btn btn-success">
                                                             <i class="material-icons">edit</i>
