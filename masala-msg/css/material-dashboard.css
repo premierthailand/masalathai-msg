@@ -12050,9 +12050,6 @@ fieldset[disabled] .is-focused .switch label:focus {
   background-image: linear-gradient(to top, #f44336 2px, rgba(244, 67, 54, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
 }
 
-.form-control:read-only {
-  background-image: linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
-}
 
 fieldset[disabled][disabled] .form-control,
 .form-control.disabled,
@@ -13582,11 +13579,11 @@ label {
   background-size: 100% 100%, 100% 100%, 0.9375rem 0.9375rem;
 }
 
-select,
+/* select,
 select.form-control {
   -moz-appearance: none;
   -webkit-appearance: none;
-}
+} */
 
 @media (min-width: 576px) {
   .form-inline .input-group {
@@ -19752,5 +19749,3 @@ Copyright (c) 2015 Daniel Eden
     display: none !important;
   }
 }
-
-/*# sourceMappingURL=dashboard-free.css.map */

@@ -29,7 +29,7 @@
                     <div class="col-md-4">
                     </div>
                     <div class="col-md-4">
-                        <form id="RegisterValidation" action="./pages/dashboard" method="post" novalidate="novalidate">
+                        <form id="RegisterValidation" action="./pages/login-check" method="post" novalidate="novalidate">
                             <div class="card ">
                                 <div class="card-header card-header-masala card-header-icon ">
                                     <div class="card-icon">
@@ -39,10 +39,10 @@
                                 </div>
                                 <div class="card-body ">
                                     <div class="form-group bmd-form-group">
-                                        <input type="email" class="form-control" id="exampleEmail" required="true" name="email" aria-required="true" placeholder="Email Address *">
+                                        <input type="email" class="form-control" id="exampleEmail" required="true" name="username" aria-required="true" placeholder="username *">
                                     </div>
                                     <div class="form-group bmd-form-group">
-                                        <input type="password" class="form-control" id="examplePassword" required="true" name="password" aria-required="true" placeholder="Email Address *">
+                                        <input type="password" class="form-control" id="examplePassword" required="true" name="password" aria-required="true" placeholder="password *">
                                     </div>
                                     <div class="card-footer text-right">
                                         <div class="form-check mr-auto">

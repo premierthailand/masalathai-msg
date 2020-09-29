@@ -296,7 +296,7 @@ FROM messenger
                                     <!-- Date -->
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <div class="text-right textDetail">Delivery Date : </div>
+                                            <div class="text-right textDetail">Delivery Date <span class="red">*</span> : </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group no-margin-top">
@@ -307,7 +307,7 @@ FROM messenger
                                     <!-- masala -->
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <div class="text-right textDetail">Magazine Vol. : </div>
+                                            <div class="text-right textDetail">Magazine Vol. <span class="red">*</span> : </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group no-margin-top">
@@ -318,11 +318,11 @@ FROM messenger
                                     <!-- Location -->
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <div class="text-right textDetail">Location Name : </div>
+                                            <div class="text-right textDetail">Location <span class="red">*</span> : </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group no-margin-top">
-                                                <input list="detailLocation" class="custom-select form-control" name="txtLocation" id="txtLocation">
+                                                <input list="detailLocation" class="custom-select form-control" name="txtLocation" id="txtLocation" placeholder="=== Select Location ===">
                                                 <datalist id="detailLocation">
                                                     <?php
                                                     $sql = "SELECT location_id,location_name,location_address,location_count,category_name 
@@ -355,7 +355,7 @@ FROM messenger
                                             <div class="text-right">Address : </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div id="lblAddress">-</div>
+                                            <div id="lblAddress"></div>
                                         </div>
                                     </div>
                                     <!-- Address -->
@@ -364,7 +364,7 @@ FROM messenger
                                             <div class="text-right">Number of Copies : </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div id="lblCopy">-</div>
+                                            <div id="lblCopy"></div>
                                         </div>
                                     </div>
                                     <!-- Category -->
@@ -373,18 +373,18 @@ FROM messenger
                                             <div class="text-right">Category : </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div id="lblCategory">-</div>
+                                            <div id="lblCategory"></div>
                                         </div>
                                     </div>
 
                                     <!-- Messenger -->
                                     <div class="row detailMargin">
                                         <div class="col-md-3">
-                                            <div class="text-right textDetail">Messenger Name : </div>
+                                            <div class="text-right textDetail">Messenger <span class="red">*</span> : </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group detail-date-margin no-margin-top">
-                                                <input list="messengerLocation" class="custom-select form-control" name="txtMessenger" id="txtMessenger">
+                                                <input list="messengerLocation" class="custom-select form-control" name="txtMessenger" id="txtMessenger" placeholder="=== Select Messenger ===">
                                                 <datalist id="messengerLocation">
                                                     <?php
                                                     $sql = "SELECT messenger_name
@@ -409,7 +409,7 @@ FROM messenger
                                     <!-- Upload -->
                                     <div class="row detailMargin">
                                         <div class="col-md-3">
-                                            <div class="text-right textDetail">Upload Photo : </div>
+                                            <div class="text-right textDetail">Photo <span class="red">*</span> : </div>
                                         </div>
                                         <div class="col-md-6">
                                             <input type="file" id="txtImage" name="txtImage" accept="image/*">
@@ -419,14 +419,14 @@ FROM messenger
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- Comment -->
+                                    <!-- Remark -->
                                     <div class="row detailMargin">
                                         <div class="col-md-3">
-                                            <div class="text-right textDetail">Issue : </div>
+                                            <div class="text-right textDetail">Remark <span class="red">*</span> : </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group no-margin-top">
-                                                <select class="form-control" name="txtIssue" id="txtIssue">
+                                                <select class="form-control ddlRemark" id="txtIssue">
                                                     <?php
                                                     $sql = "SELECT issue_id,issue_name
                                                     FROM `issue`";
@@ -444,6 +444,17 @@ FROM messenger
                                                     ?>
 
                                                 </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Comment -->
+                                    <div class="row" id="lblComment" style="display:none;">
+                                        <div class="col-md-3">
+                                            <div class="text-right textDetail">Comment : </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group no-margin-top">
+                                                <input type="text" class="form-control" id="txtComment">
                                             </div>
                                         </div>
                                     </div>
@@ -476,10 +487,23 @@ FROM messenger
     var fileName = "";
     $(function() {
         $("#btnSave").click(clickSave);
-        changeLocation();
         $("#txtLocation").change(changeLocation);
         $("#txtImage").change(uploadImage);
+        $("#txtIssue").change(changeRemark);
+
+        changeLocation();
+        changeRemark();
     });
+
+    function changeRemark() {
+        if ($("#txtIssue").val() == 3) {
+            $("#lblComment").show();
+        } else {
+            $("#lblComment").hide();
+            $("#txtComment").val("");
+        }
+
+    }
 
     function uploadImage() {
         var fd = new FormData();
@@ -502,6 +526,7 @@ FROM messenger
                     $(".preview img").show(); // Display image element
                     return fileName;
                 } else {
+                    alert("Please upload only image files.")
                     return "";
                 }
             },
@@ -518,6 +543,7 @@ FROM messenger
         var messenger = $("#txtMessenger").val();
         var image = $("#txtImage").val();
         var issue = $("#txtIssue").val();
+        var comment = $("#txtComment").val();
         if (date.length == 0) {
             alert("Please Enter Delivery Date.");
             return;
@@ -547,9 +573,11 @@ FROM messenger
         var image = $('#txtImage')[0].files;
         if (image.length != 0) {
             if (image[0].name.split(".").length == 1 || !isImage(image[0])) { //Chagen Type Image
+                alert("Please upload only (png, jpg, jpeg).");
                 return;
             };
             if (image[0].size >= 3000000) {
+                alert("Your image is too large.");
                 return;
             }
         }
@@ -561,7 +589,8 @@ FROM messenger
             "&location=" + location +
             "&messenger=" + messenger +
             "&image=" + image +
-            "&issue=" + issue;
+            "&issue=" + issue +
+            "&comment=" + comment;
         window.location.href = url;
     }
 

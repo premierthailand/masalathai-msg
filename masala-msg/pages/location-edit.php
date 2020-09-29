@@ -16,9 +16,7 @@ $sql = "SELECT `location_id`,`location_name`,`location_houseno`,location_soi,loc
  WHERE `Location_isActive`=1 AND location_id='$IDedit'";
 
 $result = $conn->query($sql);
-if ($result->num_rows > 0) {
-    // output data of each row
-    while ($row = $result->fetch_assoc()) {
+$row = $result->fetch_assoc();
 ?>
         <div class="content">
         <div class="container-fluid">
@@ -31,7 +29,7 @@ if ($result->num_rows > 0) {
                             <div class="card-icon">
                                 <i class="material-icons" style="padding-left:4px;">apartment</i>
                             </div>
-                            <h4 class="card-title"><b>Edit Location </b></h4>
+                            <h4 class="card-title"><b><?php echo $pageName?> </b></h4>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -49,23 +47,32 @@ if ($result->num_rows > 0) {
                                     <!-- House Number -->
                                     <div class="row">
                                         <div class="col-md-2">
-                                            <div class="text-right textDetail">House Number <span class="red">*</span> : </div>
+                                            <div class="text-right textDetail">House<span class="red">*</span> : </div>
                                         </div>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="location-detail-number" id="txtHouse" placeholder="House Number" value="<?php echo $row["location_houseno"]?>">
+                                            <input type="text" class="form-control" name="location-detail-number" id="txtHouse" placeholder="House" value="<?php echo $row["location_houseno"]?>">
                                         </div>
                                     </div>
                                     <br>
                                     <!-- Soi -->
                                     <div class="row">
                                         <div class="col-md-2">
-                                            <div class="text-right textDetail">Soi <span class="red">*</span> : </div>
+                                            <div class="text-right textDetail">Soi &nbsp; : </div>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-2">
                                             <input type="text" class="form-control" name="location-detail-soi" id="txtSoi" placeholder="Soi" value="<?php echo $row["location_soi"]?>">
                                         </div>
+                                        <div class="col-md-1">
+                                            <input type="text" class="form-control" name="location-detail-soi" id="txtSoiNo" placeholder="No" value="<?php echo $row["location_soi"]?>">
+                                        </div>
+                                        <span style="font-size: 20px;padding-top:10px;">
+                                        /
+                                        </span>
+                                        <div class="col-md-1">
+                                            <input type="text" class="form-control" name="location-detail-soi" id="txtSubsoiNo" placeholder="SubNo" value="<?php echo $row["location_soi"]?>">
+                                        </div>
                                     <!-- Road -->
-                                        <div class="col-md-2">
+                                        <div class="col-md-1">
                                             <div class="textDetail text-right">Road <span class="red">*</span> : </div>
                                         </div>
                                         <div class="col-md-4">
@@ -93,7 +100,7 @@ if ($result->num_rows > 0) {
                                     <!-- Post Code -->
                                     <div class="row">
                                         <div class="col-md-2">
-                                            <div class="text-right textDetail">Post Code <span class="red">*</span> : </div>
+                                            <div class="text-right textDetail">Post Code &nbsp; : </div>
                                         </div>
                                         <div class="col-md-9">
                                             <input type="number" class="form-control" name="location-detail-PostCode" id="txtPost" placeholder="Post Code" value="<?php echo $row["location_postno"]?>">
@@ -117,7 +124,7 @@ if ($result->num_rows > 0) {
                                             <div class="text-right textDetail">Category <span class="red">*</span> : </div>
                                         </div>
                                         <div class="col-md-9">
-                                            <input list="locationCategory" class="custom-select form-control" id="txtCategory" name="location-detail-catgory" placeholder="=== Select Category ===" value="<?php echo $row["category_name"]?>">
+                                            <input list="locationCategory" class="custom-select form-control" id="txtCategory" name="location-detail-catgory" placeholder="=== Select ===" value="<?php echo $row["category_name"]?>">
                                             <datalist id="locationCategory">
                                                 <?php
                                                 $sqlCat = "SELECT category_id,category_name
@@ -170,7 +177,7 @@ if ($result->num_rows > 0) {
                                     <!-- Upload -->
                                     <div class="row detailMargin">
                                                 <div class="col-md-2">
-                                                    <div class="text-right textDetail">Upload Photo : </div>
+                                                    <div class="text-right textDetail">Photo : </div>
                                                 </div>
                                                 <div class="col-md-9">
                                                     <input type="file" id="txtImage" name="txtImage" accept=".jpg,.png,.jpeg" value="<?php echo $row["transection_img"]; ?>">
@@ -200,193 +207,7 @@ if ($result->num_rows > 0) {
             </div>
         </div>
     </div>
-    <?php
-    }
-} else {
-    ?>
-    <div class="content">
-        <div class="container-fluid">
-            <input type="hidden" id="txtId" value="">
-            <input type="hidden" id="tempCopy" value="1">
-            <div class="row">
-                <div class="col-lg-12 col-md-12">
-                    <div class="card">
-                        <div class="card-header card-header-masala card-header-icon">
-                            <div class="card-icon">
-                                <i class="material-icons" style="padding-left:4px;">apartment</i>
-                            </div>
-                            <h4 class="card-title"><b>Add Location</b></h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <!-- Location Name -->
-                                    <div class="row">
-                                        <div class="col-md-2">
-                                            <div class="text-right textDetail">Location Name <span class="red">*</span> : </div>
-                                        </div>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="location-detail-name" id="txtLocation" placeholder="Location Name">
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <!-- House Number -->
-                                    <div class="row">
-                                        <div class="col-md-2">
-                                            <div class="text-right textDetail">House Number <span class="red">*</span> : </div>
-                                        </div>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="location-detail-number" id="txtHouse" placeholder="House Number">
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <!-- Soi -->
-                                    <div class="row">
-                                        <div class="col-md-2">
-                                            <div class="text-right textDetail">Soi <span class="red">*</span> : </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <input type="text" class="form-control" name="location-detail-soi" id="txtSoi" placeholder="Soi">
-                                        </div>
-                                    <!-- Road -->
-                                        <div class="col-md-2">
-                                            <div class="textDetail text-right">Road <span class="red">*</span> : </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <input type="text" class="form-control" name="location-detail-road" id="txtRoad" placeholder="Road">
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <!-- District -->
-                                    <div class="row">
-                                        <div class="col-md-2">
-                                            <div class="text-right textDetail">District <span class="red">*</span> : </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <input type="text" class="form-control" name="location-detail-District" id="txtDistrict" placeholder="District">
-                                        </div>
-                                    <!-- Province -->
-                                        <div class="col-md-2">
-                                            <div class="textDetail text-right">Province <span class="red">*</span> : </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <input type="text" class="form-control" name="location-detail-Province" id="txtProvince" placeholder="Province">
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <!-- Post Code -->
-                                    <div class="row">
-                                        <div class="col-md-2">
-                                            <div class="text-right textDetail">Post Code <span class="red">*</span> : </div>
-                                        </div>
-                                        <div class="col-md-9">
-                                            <input type="number" class="form-control" name="location-detail-PostCode" id="txtPost" placeholder="Post Code">
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <!-- Area -->
-                                    <div class="row">
-                                        <div class="col-md-2">
-                                            <div class="text-right textDetail">Area <span class="red">*</span> : </div>
-                                        </div>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="location-detail-Area" id="txtArea" placeholder="Area">
-                                        </div>
-                                    </div>
-                                    <br>
-                                    
-                                    <!-- Category -->
-                                    <div class="row">
-                                        <div class="col-md-2">
-                                            <div class="text-right textDetail">Category <span class="red">*</span> : </div>
-                                        </div>
-                                        <div class="col-md-9">
-                                            <input list="locationCategory" class="custom-select form-control" id="txtCategory" name="location-detail-catgory" value="" placeholder="=== Select Category ===">
-                                            <datalist id="locationCategory">
-                                                <?php
-                                                $sqlCat = "SELECT category_id,category_name
-                                                    FROM `category` ";
-                                                $resultCat = $conn->query($sqlCat);
-                                                if ($resultCat->num_rows > 0) {
-                                                    // output data of each row
-                                                    while ($rowCat = $resultCat->fetch_assoc()) {
-                                                ?> <?php $catIdInsert = $rowCat["category_id"]; ?>
-                                                        <option value="<?php echo $rowCat["category_name"]; ?>"></option>
-                                                <?php
-                                                    }
-                                                }
-                                                ?>
-                                            </datalist>
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <!-- Number of Copy -->
-                                    <div class="row">
-                                        <div class="col-md-2">
-                                            <div class="text-right textDetail">Number of Copies <span class="red">*</span> : </div>
-                                        </div>
-                                        <div class="col-md-9">
-                                            <select class="form-control" id="txtCopy"></select>
-                                            <!-- <input type="number" class="form-control" name="location-detail-copy" id="txtCopy" value="1"> -->
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <!-- Contact Person-->
-                                    <div class="row">
-                                        <div class="col-md-2">
-                                            <div class="text-right textDetail">Contact Name : </div>
-                                        </div>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="location-detail-contact" id="txtContact" value="" placeholder="Contact Name">
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <!-- Phone -->
-                                    <div class="row">
-                                        <div class="col-md-2">
-                                            <div class="text-right textDetail">Contact Phone : </div>
-                                        </div>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" id="txtPhone" name="phone" value="" placeholder="Contact Phone">
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <!-- Upload -->
-                                    <div class="row detailMargin">
-                                                <div class="col-md-2">
-                                                    <div class="text-right textDetail">Upload Photo : </div>
-                                                </div>
-                                                <div class="col-md-9">
-                                                    <input type="file" id="txtImage" name="txtImage" accept=".jpg,.png,.jpeg" value="<?php echo $row["transection_img"]; ?>">
-                                                </div>
-                                            </div>
-                                            <br>
-                                    <!-- insert -->
-                                    <div class="row">
-
-                                        <div class="col-md-6 text-center">
-
-                                            <button class="btn btn-masala" id="btnSave">Save</button> &nbsp;
-
-                                            <a href="./location">
-                                                <button class="btn btn-default">Cancel</button>
-                                            </a>
-
-                                            <div class="clearfix"></div>
-                                        </div>
-                                    </div>
-                                    <br>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-<?php
-}
-
+ <?php 
 $conn->close();
 ?>
 <?php include 'footer.php'; ?>
@@ -431,10 +252,6 @@ $conn->close();
             validateAlert("txtHouse", "Please Enter House");
             return;
         }
-        if (soi.length == 0) {
-            validateAlert("txtSoi", "Please Enter Soi");
-            return;
-        }
         if (road.length == 0) {
             validateAlert("txtRoad", "Please Enter Road");
             $("#txtRoad").focus();
@@ -452,10 +269,6 @@ $conn->close();
         }
         if (area.length == 0) {
             validateAlert("txtArea", "Please Enter Area");
-            return;
-        }
-        if (post.length == 0) {
-            validateAlert("txtPost", "Please Enter Post");
             return;
         }
         if (category.length == 0) {

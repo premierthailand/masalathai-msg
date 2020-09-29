@@ -1,33 +1,29 @@
-.detail-type-margin{
-    margin-right:30px;
+.detail-type-margin {
+  margin-right: 30px;
 }
-.textDetail{
-    margin-top:7px;
+.textDetail {
+  margin-top: 7px;
 }
-.no-margin-top{
-    margin-top:0!important;
-}
-
-.no-padding-top{
-  padding-top:0!important;
-}
-.detailMargin{
-    margin-top:10px;
+.no-margin-top {
+  margin-top: 0 !important;
 }
 
+.no-padding-top {
+  padding-top: 0 !important;
+}
+.detailMargin {
+  margin-top: 10px;
+}
 
-/* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-/* Firefox */
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
 }
-
 
 .footer {
   position: fixed;
@@ -36,28 +32,39 @@ input[type=number] {
   text-align: center;
 }
 
-.form-check .form-check-input:checked~.form-check-sign .check{
+.form-check .form-check-input:checked ~ .form-check-sign .check {
   background: #b4292d;
 }
 input::-webkit-calendar-picker-indicator {
   opacity: 100;
   cursor: pointer;
 }
-.red{
-  color:red;
-  font-size:12px;
+.red {
+  color: red;
+  font-size: 12px;
 }
-.sidebar{
-  width:240px;
+.sidebar {
+  width: 240px;
 }
-.sidebar .sidebar-wrapper{
-  width:240px;
+.sidebar .sidebar-wrapper {
+  width: 240px;
 }
-.main-panel{
-  width:calc(100% - 240px);
+.main-panel {
+  width: calc(100% - 240px);
 }
 /* Preview */
-.preview img{
-  margin-top:15px;
-   display: none;
+.preview img {
+  margin-top: 15px;
+  display: none;
+}
+.location-Deactive {
+  color: red;
+}
+.ddlRemark {
+  cursor: pointer;
+}
+.btn-print{
+  margin:0;
+  padding: 10px;
+  margin: 15px 0 0 0;
 }
