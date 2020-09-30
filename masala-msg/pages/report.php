@@ -24,11 +24,9 @@
                             </div>
 
                             <div class="col-md-6 text-right">
-                                <form action="report-print" method="post"> 
-                                    <button type="submit" class="btn btn-masala btn-print" id="btnPrint">
-                                        <i class="material-icons">print</i>
-                                    </button>
-                                </form>
+                                <button type="button" class="btn btn-masala btn-print" id="btnPrint">
+                                    <i class="material-icons">print</i>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -42,7 +40,7 @@
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <label class="form-check-label">
-                                                    <input class="form-check-input" id="chkMasala" <?php echo $_REQUEST["type"] != 'lite' ? "checked" : ""; ?> type="checkbox" value=""> Masala
+                                                    <input class="form-check-input" id="chkMasala" <?php echo $_REQUEST["masala"] != '0' ? "checked" : ""; ?> type="checkbox"> Masala
                                                     <span class="form-check-sign">
                                                         <span class="check"></span>
                                                     </span>
@@ -50,7 +48,7 @@
                                             </div>
                                             <div class="col-md-3">
                                                 <label class="form-check-label">
-                                                    <input class="form-check-input" id="chkLite" <?php echo $_REQUEST["type"] == 'lite' ? "checked" : ""; ?> type="checkbox" value=""> Masala Lite
+                                                    <input class="form-check-input" id="chkLite" <?php echo $_REQUEST["lite"] != '0' ? "checked" : ""; ?> type="checkbox" value=""> Masala Lite
                                                     <span class="form-check-sign">
                                                         <span class="check"></span>
                                                     </span>
@@ -120,13 +118,35 @@
                                         <td width="15%">Location</td>
                                         <td width="35%">Address</td>
                                         <td width="10%">Number of Copies</td>
-                                        <td width="10%">Status</td>
+                                        <td width="5%">Status</td>
+                                        <td width="5%">Action</td>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
 
                                     $No = 0;
+
+                                    if ($_REQUEST["search"] != '') {
+                                        $searchDB = "AND (location_name like '%" . $_REQUEST['search'] . "%'
+                                      OR messenger_name like '%" . $_REQUEST['search'] . "%'
+                                      OR location_area like '%" . $_REQUEST['search'] . "%'
+                                      OR location_soi like '%" . $_REQUEST['search'] . "%'
+                                      OR location_soi_number like '%" . $_REQUEST['search'] . "%'
+                                      OR location_subsoi_number like '%" . $_REQUEST['search'] . "%'
+                                      OR location_road like '%" . $_REQUEST['search'] . "%'
+                                      OR location_District like '%" . $_REQUEST['search'] . "%'
+                                      OR location_Province like '%" . $_REQUEST['search'] . "%'
+                                      OR location_postno like '%" . $_REQUEST['search'] . "%'
+                                      OR location_count like '%" . $_REQUEST['search'] . "%'
+                                    )";
+                                    }
+                                    if ($_REQUEST["masala"] == '0') {
+                                        $masalaDB = "AND magazineType_name !='masala'";
+                                    }
+                                    if ($_REQUEST["lite"] == '0') {
+                                        $liteDB = "AND magazineType_name !='lite'";
+                                    }
                                     $inputDate = $_REQUEST['date'];
                                     $date = date_create($inputDate);
                                     $selectTime = date_format($date, "Y-m-d");
@@ -135,16 +155,48 @@
                                     } else {
                                         $dateDB = "AND transection_delivery_date = '$selectTime'";
                                     }
-
-                                    $sql = "SELECT `transection_id`,`transection_delivery_date`,`messenger_name`,`location_name`,`location_address`,`location_count`,transection_img 
+                                    if ($_REQUEST["location"] != '') {
+                                        $locationDB = "AND (location_name like '%" . $_REQUEST['location'] . "%'
+                                      OR location_area like '%" . $_REQUEST['location'] . "%'
+                                      OR location_soi like '%" . $_REQUEST['location'] . "%'
+                                      OR location_soi_number like '%" . $_REQUEST['location'] . "%'
+                                      OR location_subsoi_number like '%" . $_REQUEST['location'] . "%'
+                                      OR location_road like '%" . $_REQUEST['location'] . "%'
+                                      OR location_District like '%" . $_REQUEST['location'] . "%'
+                                      OR location_Province like '%" . $_REQUEST['location'] . "%'
+                                      OR location_postno like '%" . $_REQUEST['location'] . "%'
+                                    )";
+                                    }
+                                    $sql = "SELECT `transection_id`,`transection_delivery_date`,`messenger_name`,`location_name`,`location_address`,`location_count`,transection_img,issue.issue_id,issue_name,transection_comment 
+                                            ,location.location_area
+                                            ,location.location_soi
+                                            ,location.location_soi_number
+                                            ,location.location_subsoi_number
+                                            ,location.location_road
+                                            ,location.location_District
+                                            ,location.location_Province
+                                            ,location.location_postno
                                             FROM location
                                             INNER JOIN transection  ON transection.location_id = location.location_id
                                             INNER JOIN messenger ON messenger.messenger_id = transection.messenger_id
+                                            INNER JOIN issue  ON issue.issue_id  = transection.issue_id 
+                                            INNER JOIN magazineVol  ON magazineVol.magazineVol_id = transection.magazineVol_id
+                                            INNER JOIN magazinetype  ON magazinetype.magazineType_id = magazineVol.magazineType_id
+
                                             WHERE `Location_isActive`=1 
-                                            $dateDB
-                                                AND messenger_name LIKE '%" . $_REQUEST["messenger"] . "%' 
-                                                AND location_name LIKE '%" . $_REQUEST["location"] . "%'";
+                                            $masalaDB
+                                            $liteDB   
+                                            $searchDB    
+                                            $dateDB  
+                                            AND messenger_name LIKE '%" . $_REQUEST["messenger"] . "%' 
+                                            $locationDB
+                                                ";
                                     $result = $conn->query($sql);
+
+
+                                    // $dateDB
+                                    // 
+                                    // AND location_name LIKE '%" . $_REQUEST["location"] . "%'
 
                                     if ($result->num_rows > 0) {
                                         // output data of each row
@@ -165,17 +217,16 @@
                                                 <td><?php echo $row["location_count"]; ?></td>
                                                 <td class="td-actions text-center">
                                                     <?php
+                                                    echo $row['issue_id'] == '0' ? "Delivered" : "Not Delivered";
+                                                    ?>
+                                                </td>
+                                                <td class="td-actions text-center">
+                                                    <?php
                                                     if ($row['transection_img'] != '') {
                                                     ?>
                                                         <button type="button" class="btn btn-info" onclick="showImage('../uploads/<?php echo $row['transection_img']; ?>','','')">
-                                                            <i class="material-icons">image_search</i> <span>Delivered</span>
+                                                            <i class="material-icons">image_search</i>
                                                         </button>
-                                                    <?php
-                                                    } else {
-                                                    ?>
-                                                        <div class="text-disabled">
-                                                            Not Delivered
-                                                        </div>
                                                     <?php } ?>
                                                 </td>
                                             </tr>
@@ -196,10 +247,6 @@
 </div>
 
 <?php include 'footer.php'; ?>
-<script src="../js/jspdf.min.js"></script>
-<script src="../js/from_html.js"></script>
-<script src="../js/split_text_to_size.js"></script>
-<script src="../js/standard_fonts_metrics.js"></script>
 <script>
     $(function() {
         $("#tableReport").DataTable({
@@ -207,37 +254,33 @@
             "lengthChange": false,
             "pageLength": 10
         });
-        $("#btnSearch").click(SearchReport);
-        $("#btnPrint").click(printPDF);
-
-
+        $("#btnSearch").click(searchReport);
+        $("#btnPrint").click(printReport);
     });
 
-    function printPDF() {
-
-        var doc = new jsPDF();
-        var elementHTML = $('#test123').html();
-        var specialElementHandlers = {
-            '#elementH': function(element, renderer) {
-                return true;
-            }
-        };
-        doc.fromHTML(elementHTML, 15, 15, {
-            'width': 170,
-            'elementHandlers': specialElementHandlers
-        });
-
-        // Save the PDF
-        doc.save('sample-document.pdf');
-    }
-
-    function SearchReport() {
+    function printReport() {
+        var search = $("#txtSearch").val();
+        var masala = boolCheckbox("chkMasala");
+        var lite = boolCheckbox("chkLite");
         var date = $("#txtDate").val();
         var messenger = $("#txtMessenger").val();
         var location = $("#txtLocation").val();
-        var search = $("#txtSearch").val();
         var type = $("input[name='type']:checked").val();
-        var url = window.location.origin + window.location.pathname + "?type=" + type + "&date=" + date + "&messenger=" + messenger + "&location=" + location + "&search=" + search;
+
+        var url = window.location.origin + window.location.pathname + "-print?masala=" + masala + "&lite=" + lite + "&search=" + search + "&date=" + date + "&messenger=" + messenger + "&location=" + location;
+        window.location.href = url;
+    }
+
+    function searchReport() {
+        var search = $("#txtSearch").val();
+        var masala = boolCheckbox("chkMasala");
+        var lite = boolCheckbox("chkLite");
+        var date = $("#txtDate").val();
+        var messenger = $("#txtMessenger").val();
+        var location = $("#txtLocation").val();
+        var type = $("input[name='type']:checked").val();
+
+        var url = window.location.origin + window.location.pathname + "?masala=" + masala + "&lite=" + lite + "&search=" + search + "&date=" + date + "&messenger=" + messenger + "&location=" + location;
         window.location.href = url;
     }
 </script>

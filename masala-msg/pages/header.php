@@ -1,5 +1,9 @@
 <?php include 'config.php'; ?>
-
+<?php
+if($_SESSION['username']==''OR $_SESSION['status']==''){
+  Header("Location: ../");
+}
+?>
 <!doctype html>
 <html lang="en">
 
@@ -19,10 +23,10 @@
   <link href="../css/datetimepicker.css" rel="stylesheet" />
   <link href="../css/main.css" rel="stylesheet" />
   <link href="../css/main2.css" rel="stylesheet" />
-  
+
 </head>
 
-<body >
+<body>
   <div class="wrapper ">
     <div class="sidebar sidebar-bg" data-color="masala" data-background-color="white" style="background-image: url('../img/bg-134521.jpg');">
       <div class="logo">
@@ -65,19 +69,21 @@
         </ul>
         <ul class="nav">
           <li class="nav-item">
-            <footer class="footer">&emsp;&emsp;
-                <div class="container-fluid">
-                  <hr>
-                  <div class="">
-                    &copy;
-                    <script>
-                      document.write(new Date().getFullYear())
-                    </script>
-                    <br>
-                    <a href="#">Masala, Magazine</a>
-                  </div>
-                  <!-- your footer here -->
+            <footer class="footer">&emsp;
+              <div class="container-fluid">
+                <hr>
+                <div class="">
+                  &copy;
+                  <script>
+                    document.write(new Date().getFullYear())
+                  </script>
+                  <br>
+                  <a>Masala Messenger</a>
+                  <br>
+                  <a>Version 1.0.1</a>
                 </div>
+                <!-- your footer here -->
+              </div>
             </footer>
           </li>
         </ul>
@@ -108,10 +114,20 @@
                 <li class="nav-item dropdown">
                   <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="material-icons">person</i>
-                    user : test
-                    <div class="ripple-container"></div></a>
+                    user :
+                    <?php
+                    echo $_SESSION['username']; 
+                    ?> 
+                    <i class="material-icons">arrow_drop_down</i>
+                  </a>
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                    <a class="dropdown-item" href="#">Log out</a>
+                    <a class="dropdown-item" href="#">
+                      Status :
+                      <?php
+                      echo $_SESSION['status']; 
+                      ?>
+                    </a>
+                    <a class="dropdown-item" href="logout">Log out</a>
                   </div>
                 </li>
               </ul>

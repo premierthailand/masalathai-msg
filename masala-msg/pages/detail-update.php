@@ -2,22 +2,16 @@
 
 <?php
 
-if ($_REQUEST["magazine"] == "masala") {
-  $detailmagazine = 1;
-} elseif ($_REQUEST["magazine"] == "lite") {
-  $detailmagazine = 2;
-}
-
-
 $detailID = $_REQUEST["id"];
+$detailmagazine = $_REQUEST["magazine"] == "masala" ? 1 : 2;
 $detaildate = $_REQUEST["date"];
 $detailvol = $_REQUEST["vol"];
 $detaillocation = $_REQUEST["location"];
 $detailmessenger = $_REQUEST["messenger"];
 $detailimage = $_REQUEST["image"];
-
 $detailissue = $_REQUEST["issue"];
 $detailComment = $_REQUEST["comment"];
+
 date_default_timezone_set("Asia/Bangkok");
 $timestamp = date("Y-m-d h:i:s");
 
@@ -25,6 +19,13 @@ $date = date_create($_REQUEST["vol"] . "-1");
 $month1 = date_format($date, "m");
 $month = (int)$month1;
 $year = date_format($date, "Y");
+if ($detailmagazine == 1 && $month % 2 == 0) {
+  $month += 1;
+  if ($month == 13) {
+    $month = 1;
+    $year += 1;
+  }
+}
 
 $sqlcat = " SELECT magazineVol_id FROM magazinevol 
             WHERE magazineType_id='$detailmagazine'
@@ -47,35 +48,18 @@ $resultmes = $conn->query($sqlmes);
 $rowmes = $resultmes->fetch_assoc();
 $messengerID = $rowmes["messenger_id"];
 
-if ($_REQUEST["id"] != 'undefined' && $_REQUEST["id"] != '') {
-  
-  // Set Last Image
-  if($detailimage != 'undefined' && $detailimage != '') {
-    $sql =  " UPDATE transection
-              SET messenger_id=          '$messengerID',
-                  location_id=          '$locationID',
-                  transection_delivery_date=          '$detaildate',
-                  transection_img=          '$detailimage',
-                  transection_last_img=          '$detailimage',
-                  issue_id=          '$detailissue',
-                  magazineVol_id=          '$magazineID',
-                  transection_update_time=          '$timestamp'
-                  WHERE `transection_id`=$detailID";
-    }
-    else {
-    $sql =  " UPDATE transection
+if ($_REQUEST["id"] != '') {
+
+  $sql =  " UPDATE transection
               SET messenger_id=          '$messengerID',
                   location_id=          '$locationID',
                   transection_delivery_date=          '$detaildate',
                   transection_img=          '$detailimage',
                   issue_id=          '$detailissue',
+                  transection_comment=          '$detailComment',
                   magazineVol_id=          '$magazineID',
                   transection_update_time=          '$timestamp'
                   WHERE `transection_id`=$detailID";
-    }
-// img  
-  // COMMENT=          '$detailComment',
-  // transection_update_id = 1
 
   if ($conn->query($sql) === TRUE) {
     header("Location: ./list");
@@ -85,8 +69,8 @@ if ($_REQUEST["id"] != 'undefined' && $_REQUEST["id"] != '') {
 
   $conn->close();
 } else {
-  $sql = "INSERT INTO transection (messenger_id,location_id, transection_delivery_date,transection_img,transection_last_img,transection_isActive,issue_id,magazineVol_id,transection_update_time)
-    VALUES ('$messengerID', '$locationID', '$detaildate','$detailimage','$detailimage','1','$detailissue','$magazineID','$timestamp')";
+  $sql = "INSERT INTO transection (messenger_id,location_id, transection_delivery_date,transection_img,transection_isActive,issue_id,transection_comment,magazineVol_id,transection_update_time)
+    VALUES ('$messengerID', '$locationID', '$detaildate','$detailimage','1','$detailissue','$detailComment','$magazineID','$timestamp')";
 
   if ($conn->query($sql) === TRUE) {
     header("Location: ./list");
@@ -97,4 +81,3 @@ if ($_REQUEST["id"] != 'undefined' && $_REQUEST["id"] != '') {
 $conn->close();
 
 ?>
-12
