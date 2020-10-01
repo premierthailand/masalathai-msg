@@ -265,7 +265,7 @@
                         INNER JOIN magazineVol  ON magazineVol.magazineVol_id = transection.magazineVol_id
                         INNER JOIN magazinetype  ON magazinetype.magazineType_id = magazineVol.magazineType_id
                         INNER JOIN issue  ON issue.issue_id  = transection.issue_id 
-                        WHERE 1=1 
+                        WHERE transection_isActive =1  
                             $masalaDB
                             $liteDB
                             $searchDB
@@ -442,6 +442,7 @@
               "&search=" + search +
               "&masala=" + masala +
               "&lite=" + lite +
+              "&location=" + location +
               "&deliver=" + deliver +
               "&notDeliver=" + notDeliver +
               "&issue=" + issue +

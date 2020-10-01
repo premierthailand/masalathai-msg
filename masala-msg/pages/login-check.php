@@ -6,7 +6,7 @@ if(isset($_POST['username'])){
       $Username = $_POST['username'];
       $Password = md5($_POST['password']);
     //query 
-      $sql="  SELECT user_name,role_name FROM user 
+      $sql="  SELECT user_name,role_name,user_id FROM user 
               INNER JOIN role ON role.role_id = user.role_id 
               Where user_username='".$Username."' AND user_password='".$Password."' 
               ";
@@ -16,7 +16,8 @@ if(isset($_POST['username'])){
 
           $_SESSION['username'] = $row["user_name"];
           $_SESSION['status'] = $row["role_name"];
-
+          $_SESSION['id'] = $row["user_id"];
+          echo $_SESSION['id'];
           echo $_SESSION['username'];
           echo $_SESSION['status'];
           Header("Location: dashboard");

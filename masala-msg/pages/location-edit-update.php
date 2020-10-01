@@ -19,28 +19,28 @@ $locationContact =$_REQUEST["contact"];
 $locationPhone =$_REQUEST["phone"];
 $locationimage =$_REQUEST["image"];
 $locationTime=date("Y-m-j H:i:s", strtotime("+7 Hour"));
-
+$user = $_SESSION['id'];
 $sqlcat = "SELECT category_id FROM category WHERE category_name='$locationCat'";
 $resultcat = $conn->query($sqlcat);
 $row = $resultcat->fetch_assoc();
 $categoryID= $row["category_id"];
 
-echo $locationID."id : d<br>";
-echo $locationName." : location<br>";
-echo $locationhouseNo." : House<br>";
-echo $locationsoiName." : soi name<br>";
-echo $locationsoi." : soi<br>";
-echo $locationsubsoi." : sub soi<br>";
-echo $locationroad." : road<br>";
-echo $locationDistrict." : District<br>";
-echo $locationProvince." : Province<br>";
-echo $locationpost." : post<br>";
-echo $locationarea." : area<br>";
-echo $locationCat." : category<br>";
-echo $locationCopy." : copy<br>";
-echo $locationContact." : contact<br>";
-echo $locationPhone ." : phone<br>";
-echo $locationimage." : image<br>";
+// echo $locationID."id : d<br>";
+// echo $locationName." : location<br>";
+// echo $locationhouseNo." : House<br>";
+// echo $locationsoiName." : soi name<br>";
+// echo $locationsoi." : soi<br>";
+// echo $locationsubsoi." : sub soi<br>";
+// echo $locationroad." : road<br>";
+// echo $locationDistrict." : District<br>";
+// echo $locationProvince." : Province<br>";
+// echo $locationpost." : post<br>";
+// echo $locationarea." : area<br>";
+// echo $locationCat." : category<br>";
+// echo $locationCopy." : copy<br>";
+// echo $locationContact." : contact<br>";
+// echo $locationPhone ." : phone<br>";
+// echo $locationimage." : image<br>";
 
 if($_REQUEST["id"]==""){
     if($locationimage!=''||$locationimage!='undefined'){
@@ -66,8 +66,8 @@ VALUES ('$locationName',
         '$locationPhone',
         '$categoryID',
         '1',
-        '1',
-        '1',
+        '$user',
+        '$user',
         '$locationTime')
         ";
 
@@ -93,7 +93,8 @@ $sql =  " UPDATE location
                 location_count=         '$locationCopy',
                 location_contact_name=  '$locationContact',
                 location_contact_phone= '$locationPhone',
-                location_category_id=   '$categoryID'
+                location_category_id=   '$categoryID',
+                location_update_id=     '$user'
 
             WHERE `location_id`=$locationID";
             

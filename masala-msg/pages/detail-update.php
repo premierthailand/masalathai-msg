@@ -47,7 +47,7 @@ $sqlmes = " SELECT messenger_id FROM messenger
 $resultmes = $conn->query($sqlmes);
 $rowmes = $resultmes->fetch_assoc();
 $messengerID = $rowmes["messenger_id"];
-
+$user = $_SESSION['id'];
 if ($_REQUEST["id"] != '') {
 
   $sql =  " UPDATE transection
@@ -58,7 +58,8 @@ if ($_REQUEST["id"] != '') {
                   issue_id=          '$detailissue',
                   transection_comment=          '$detailComment',
                   magazineVol_id=          '$magazineID',
-                  transection_update_time=          '$timestamp'
+                  transection_update_time=          '$timestamp',
+                  transection_update_id = '$user'
                   WHERE `transection_id`=$detailID";
 
   if ($conn->query($sql) === TRUE) {
@@ -69,8 +70,8 @@ if ($_REQUEST["id"] != '') {
 
   $conn->close();
 } else {
-  $sql = "INSERT INTO transection (messenger_id,location_id, transection_delivery_date,transection_img,transection_isActive,issue_id,transection_comment,magazineVol_id,transection_update_time)
-    VALUES ('$messengerID', '$locationID', '$detaildate','$detailimage','1','$detailissue','$detailComment','$magazineID','$timestamp')";
+  $sql = "INSERT INTO transection (messenger_id,location_id, transection_delivery_date,transection_img,transection_isActive,issue_id,transection_comment,magazineVol_id,transection_update_time,transection_update_id,transection_create_id)
+    VALUES ('$messengerID', '$locationID', '$detaildate','$detailimage','1','$detailissue','$detailComment','$magazineID','$timestamp','$user','$user')";
 
   if ($conn->query($sql) === TRUE) {
     header("Location: ./list");
