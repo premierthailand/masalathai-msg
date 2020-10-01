@@ -3,12 +3,12 @@
 <?php
 $editid = $_REQUEST["id"];
 $sql =  " UPDATE location
-            SET Location_isActive='0'
+            SET Location_isActive='1'
             WHERE `location_id`=$editid";
 $result = mysqli_query($conn, $sql);
 if (isset($result)) {
 
-    header("Location: ./location");
+    //header("Location: ./location");
 
 } else {
         echo "Error Remove record: " . $conn->error;
@@ -16,6 +16,3 @@ if (isset($result)) {
 
 $conn->close();
 ?>
-<?php include 'header.php'; ?>
-
-<?php include 'footer.php'; ?>

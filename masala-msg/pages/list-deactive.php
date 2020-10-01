@@ -18,7 +18,7 @@ $sql =  " UPDATE transection
 $result = mysqli_query($conn, $sql);
 if (isset($result)) {
 
-    header("Location: ./list?type=$type&issue=$issue&deliver=$deliver&active=$active");
+    //header("Location: ./list?type=$type&issue=$issue&deliver=$deliver&active=$active");
 
 } else {
         echo "Error Remove record: " . $conn->error;

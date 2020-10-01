@@ -139,7 +139,7 @@
                                             AND category_name like'%" . $_REQUEST["category"] . "%'
                                             AND location_name like'%" . $_REQUEST["location"] . "%'
                                             AND location_area like'%" . $_REQUEST["area"] . "%'
-                                            AND location_address like'%" . $_REQUEST["soi"] . "%'
+                                            AND location_soi like'%" . $_REQUEST["soi"] . "%'
                                             AND location_road like'%" . $_REQUEST["road"] . "%'
                                             AND location_District like'%" . $_REQUEST["district"] . "%'
                                             AND location_Province like'%" . $_REQUEST["province"] . "%'
@@ -300,7 +300,7 @@
                         var province = $("#txtProvince").val();
                         var postcode = $("#txtPostcode").val();
                         var url = window.location.origin + window.location.pathname + "-deactive?id=" + id +
-                            "search" + search +
+                            "&search=" + search +
                             "&category=" + category +
                             "&location=" + location +
                             "&area=" + area +

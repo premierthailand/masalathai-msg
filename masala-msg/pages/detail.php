@@ -69,7 +69,7 @@ $MagazineVoldate = $row["magazineVol_Month_id"] == '' ? date("Y-m") : date_forma
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group no-margin-top">
-                                            <input name="txtDate" type="date" id="txtDate" class="form-control" value="<?php echo $listtime == '' ? date("Y-m-d") : $listtime; ?>" max="<?php echo date("Y-m-d"); ?>" min="1990-01-01" />
+                                            <input name="txtDate" type="date" id="txtDate" class="form-control" value="<?php echo $listtime == '' ? date("Y-m-d") : $listtime; ?>" max="<?php echo date("Y-m-d"); ?>" min="2020-10-01" />
                                         </div>
                                     </div>
                                 </div>
@@ -80,7 +80,7 @@ $MagazineVoldate = $row["magazineVol_Month_id"] == '' ? date("Y-m") : date_forma
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group no-margin-top">
-                                            <input name="txtVol" type="month" class="form-control" id="txtVol" value="<?php echo  $MagazineVoldate; ?>" max="<?php echo date("Y-m") ?>" min="1990-01" />
+                                            <input name="txtVol" type="month" class="form-control" id="txtVol" value="<?php echo  $MagazineVoldate; ?>" max="<?php echo date("Y-m") ?>" min="2020-10" />
                                         </div>
                                     </div>
                                 </div>

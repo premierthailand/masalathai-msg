@@ -13,7 +13,7 @@
                   <div class="card-icon">
                     <i class="material-icons">library_books</i>
                   </div>
-                  <h4 class="card-title">Delivery List </h4>
+                  <h4 class="card-title">Delivery List</h4>
                 </div>
                 <div class="col-md-4" style="margin-top: 10px;">
                   <input class="form-control" id="txtSearch" placeholder="Search..." value="<?php echo $_REQUEST["search"] ?>">
@@ -74,13 +74,10 @@
                           <input list="issueList" id="txtIssue" class="custom-select form-control" placeholder="=== Masala Issue ===" value="<?php echo $_REQUEST["issue"] ?>">
                           <datalist id="issueList" class="text-left">
                             <?php
-                            $monthsearch = date("n");
-                            $yearsearch = date("Y");
                             $sql = "SELECT magazineVol_Month,magazineVol_Year
                               FROM `magazineVol` 
                               Where magazineType_id=1 
-                              AND magazineVol_Month_id <= $monthsearch
-                              AND magazineVol_Year <= $yearsearch
+                              AND YEAR(NOW())>=magazineVol_Year AND MONTH(NOW()) >= magazineVol_Month_id-1
                               ORDER BY magazineVol_Year DESC, CAST(magazineVol_Month_id AS int) DESC ";
                             $result = $conn->query($sql);
                             if ($result->num_rows > 0) {
@@ -102,10 +99,8 @@
                           <datalist id="issueListLite">
                             <?php
                             $sql = "SELECT magazineVol_Month,magazineVol_Year
-                              FROM `magazineVol` 
-                              Where magazineType_id=2
-                              AND magazineVol_Month_id <= $monthsearch
-                              AND magazineVol_Year <= $yearsearch
+                              FROM `magazineVol` Where magazineType_id=2
+                              AND YEAR(NOW())>=magazineVol_Year AND MONTH(NOW()) >= magazineVol_Month_id
                               ORDER BY magazineVol_Year DESC, CAST(magazineVol_Month_id AS int) DESC ";
                             $result = $conn->query($sql);
 
@@ -192,36 +187,35 @@
                   </div>
                 </div>
               </div>
-            </div>
-            <br />
+              <br />
 
-            <div class="table-responsive">
-              <table class="table" id="tableList" width="100%">
-                <thead class="font-weight-bold">
-                  <tr class="text-center">
-                    <td width="5%">No.</td>
-                    <td width="20%">Messenger</td>
-                    <td width="20%">Location</td>
-                    <td width="15%">Issue</td>
-                    <td width="10%">Delivery Date</td>
-                    <td width="15%">Comment</td>
-                    <td width="5%">Status</td>
-                    <td width="10%">Action</td>
-                  </tr>
-                </thead>
-                <tbody>
+              <div class="table-responsive">
+                <table class="table" id="tableList" width="100%">
+                  <thead class="font-weight-bold">
+                    <tr class="text-center">
+                      <td width="5%">No.</td>
+                      <td width="20%">Messenger</td>
+                      <td width="20%">Location</td>
+                      <td width="15%">Issue</td>
+                      <td width="10%">Delivery Date</td>
+                      <td width="15%">Comment</td>
+                      <td width="5%">Status</td>
+                      <td width="10%">Action</td>
+                    </tr>
+                  </thead>
+                  <tbody>
 
-                  <?php
-                  $No = 0;
-                  if ($_REQUEST["masala"] == '0') {
-                    $masalaDB = "AND magazineType_name !='masala'";
-                  }
-                  if ($_REQUEST["lite"] == '0') {
-                    $liteDB = "AND magazineType_name !='lite'";
-                  }
+                    <?php
+                    $No = 0;
+                    if ($_REQUEST["masala"] == '0') {
+                      $masalaDB = "AND magazineType_name !='masala'";
+                    }
+                    if ($_REQUEST["lite"] == '0') {
+                      $liteDB = "AND magazineType_name !='lite'";
+                    }
 
-                  if ($_REQUEST["search"] != '') {
-                    $searchDB = "AND (location_name like '%" . $_REQUEST['search'] . "%'
+                    if ($_REQUEST["search"] != '') {
+                      $searchDB = "AND (location_name like '%" . $_REQUEST['search'] . "%'
                                       OR messenger_name like '%" . $_REQUEST['search'] . "%'
                                       OR transection_delivery_date like '%" . $_REQUEST['search'] . "%'
                                       OR magazineVol_Month like '%" . $_REQUEST['search'] . "%'
@@ -236,25 +230,25 @@
                                       OR location_Province like '%" . $_REQUEST['search'] . "%'
                                       OR location_postno like '%" . $_REQUEST['search'] . "%'
                   )";
-                  }
-                  if ($_REQUEST["deliver"] == '0') {
-                    $deliverDB = "AND transection.issue_id !='0'";
-                  }
-                  if ($_REQUEST["notDeliver"] == '0') {
-                    $notDeliverDB = "AND transection.issue_id ='0'";
-                  }
+                    }
+                    if ($_REQUEST["deliver"] == '0') {
+                      $deliverDB = "AND transection.issue_id !='0'";
+                    }
+                    if ($_REQUEST["notDeliver"] == '0') {
+                      $notDeliverDB = "AND transection.issue_id ='0'";
+                    }
 
-                  if ($_REQUEST["issue"] == '') {
-                    $issueDB = "";
-                  } elseif ($_REQUEST["issue"] !== '') {
-                    $issueDB = "AND magazineVol.magazineVol_Month ='" . $_REQUEST["issue"] . "'";
-                  }
-                  if ($_REQUEST["issueLite"] == '') {
-                    $issueLiteDB = "";
-                  } elseif ($_REQUEST["issueLite"] !== '') {
-                    $issueLiteDB = "AND magazineVol.magazineVol_Month ='" . $_REQUEST["issueLite"] . "'";
-                  }
-                  $sql = "SELECT Location_isActive,transection_id,location_name,messenger_name,transection_delivery_date,transection_img,magazineVol_Month,magazineVol_Year,issue.issue_id,issue_name,transection_comment
+                    if ($_REQUEST["issue"] == '') {
+                      $issueDB = "";
+                    } elseif ($_REQUEST["issue"] !== '') {
+                      $issueDB = "AND magazineVol.magazineVol_Month ='" . $_REQUEST["issue"] . "'";
+                    }
+                    if ($_REQUEST["issueLite"] == '') {
+                      $issueLiteDB = "";
+                    } elseif ($_REQUEST["issueLite"] !== '') {
+                      $issueLiteDB = "AND magazineVol.magazineVol_Month ='" . $_REQUEST["issueLite"] . "'";
+                    }
+                    $sql = "SELECT Location_isActive,transection_id,location_name,messenger_name,transection_delivery_date,transection_img,magazineVol_Month,magazineVol_Year,issue.issue_id,issue_name,transection_comment
                   ,category.category_name
                   ,location.location_area
                   ,location.location_soi
@@ -263,7 +257,6 @@
                   ,location.location_road
                   ,location.location_District
                   ,location.location_Province
-                  
                   ,location.location_postno
                     FROM messenger 
                         INNER JOIN transection  ON transection.messenger_id = messenger.messenger_id
@@ -273,14 +266,6 @@
                         INNER JOIN magazinetype  ON magazinetype.magazineType_id = magazineVol.magazineType_id
                         INNER JOIN issue  ON issue.issue_id  = transection.issue_id 
                         WHERE 1=1 
-                        AND location_name like '%" . $_REQUEST['location'] . "%'
-                        AND category_name like '%" . $_REQUEST['category'] . "%'
-                        AND location_area like '%" . $_REQUEST['area'] . "%'
-                        AND location_address like '%" . $_REQUEST['soi'] . "%'
-                        AND location_road like '%" . $_REQUEST['road'] . "%'
-                        AND location_District like '%" . $_REQUEST['district'] . "%'
-                        AND location_Province like '%" . $_REQUEST['province'] . "%'
-                        AND location_postno like '%" . $_REQUEST['post'] . "%'
                             $masalaDB
                             $liteDB
                             $searchDB
@@ -289,59 +274,60 @@
                             $issueDB
                             $issueLiteDB
                            ";
-                  $result = $conn->query($sql);
+                    $result = $conn->query($sql);
 
-                  if ($result->num_rows > 0) {
+                    if ($result->num_rows > 0) {
 
-                    // output data of each row
-                    while ($row = $result->fetch_assoc()) {
-                      $No++;
-                      $date = date_create($row["transection_delivery_date"]);
-                      $listtime = date_format($date, "d-m-Y");
-                      $image = $row["transection_img"];
-                  ?>
-                      <tr class="<?php echo $row["Location_isActive"] == 0 ? 'location-Deactive' : '' ?>">
-                        <td class="text-center"><?php echo $No; ?></td>
-                        <td><?php echo $row["messenger_name"]; ?></td>
-                        <td><?php echo $row["location_name"]; ?></td>
+                      // output data of each row
+                      while ($row = $result->fetch_assoc()) {
+                        $No++;
+                        $date = date_create($row["transection_delivery_date"]);
+                        $listtime = date_format($date, "d-m-Y");
+                        $image = $row["transection_img"];
+                    ?>
+                        <tr class="<?php echo $row["Location_isActive"] == 0 ? 'location-Deactive' : '' ?>">
+                          <td class="text-center"><?php echo $No; ?></td>
+                          <td><?php echo $row["messenger_name"]; ?></td>
+                          <td><?php echo $row["location_name"]; ?></td>
 
-                        <td class="text-center"><?php echo $row["magazineVol_Month"]; ?></td>
-                        <td class="text-center"><?php echo $listtime; ?></td>
-                        <td class="text-center"><?php echo $row['issue_id'] != 3 ? $row["issue_name"] : $row["transection_comment"]; ?></td>
-                        <td class="td-actions text-center">
-                          <?php
-                          echo $row['issue_id'] == '0' ? "Delivered" : "Not Delivered";
-                          ?>
-                        </td>
+                          <td class="text-center"><?php echo $row["magazineVol_Month"]; ?></td>
+                          <td class="text-center"><?php echo $listtime; ?></td>
+                          <td class="text-center"><?php echo $row['issue_id'] != 3 ? $row["issue_name"] : $row["transection_comment"]; ?></td>
+                          <td class="td-actions text-center">
+                            <?php
+                            echo $row['issue_id'] == '0' ? "Delivered" : "Not Delivered";
+                            ?>
+                          </td>
 
-                        <td class="td-actions text-center">
-                          <button type="button" class="btn btn-info" onclick="showImage('../uploads/<?php echo $row['transection_img']; ?>','','')">
-                            <i class="material-icons">image_search</i>
-                          </button>
-                          <a href="./detail?id=<?php echo $row["transection_id"]; ?>">
-                            <button type="button" class="btn btn-success">
-                              <i class="material-icons">edit</i>
+                          <td class="td-actions text-center">
+                            <button type="button" class="btn btn-info" onclick="showImage('../uploads/<?php echo $row['transection_img']; ?>','','')">
+                              <i class="material-icons">image_search</i>
                             </button>
-                          </a>
-                          <?php
-                          if ($_SESSION['status'] == 'Manager' or $_SESSION['status'] == 'webDev') {
-                          ?>
-                            <button type="button" class="btn btn-danger" onclick="deactivateList(<?php echo $row['transection_id']; ?>)">
-                              <i class="material-icons">close</i>
-                            </button>
-                        </td>
-                      <?php
-                          }
-                      ?>
-                      </tr>
-                  <?php
+                            <a href="./detail?id=<?php echo $row["transection_id"]; ?>">
+                              <button type="button" class="btn btn-success">
+                                <i class="material-icons">edit</i>
+                              </button>
+                            </a>
+                            <?php
+                            if ($_SESSION['status'] == 'Manager' or $_SESSION['status'] == 'webDev') {
+                            ?>
+                              <button type="button" class="btn btn-danger" onclick="deactivateList(<?php echo $row['transection_id']; ?>)">
+                                <i class="material-icons">close</i>
+                              </button>
+                          </td>
+                        <?php
+                            }
+                        ?>
+                        </tr>
+                    <?php
+                      }
                     }
-                  }
 
-                  $conn->close();
-                  ?>
-                </tbody>
-              </table>
+                    $conn->close();
+                    ?>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
@@ -468,8 +454,6 @@
               "&district=" + district +
               "&province=" + province +
               "&post=" + post;
-            alert(url);
-            return;
             window.location.href = url;
           }
         })

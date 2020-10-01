@@ -116,7 +116,7 @@ if($_SESSION['username']==''OR $_SESSION['status']==''){
                     <i class="material-icons">person</i>
                     user :
                     <?php
-                    echo $_SESSION['username']; 
+                    echo $_SESSION['username'];
                     ?> 
                     <i class="material-icons">arrow_drop_down</i>
                   </a>
@@ -124,7 +124,7 @@ if($_SESSION['username']==''OR $_SESSION['status']==''){
                     <a class="dropdown-item" href="#">
                       Status :
                       <?php
-                      echo $_SESSION['status']; 
+                      echo $_SESSION['status'];
                       ?>
                     </a>
                     <a class="dropdown-item" href="logout">Log out</a>
