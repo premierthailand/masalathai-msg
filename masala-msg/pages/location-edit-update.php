@@ -7,7 +7,6 @@ $locationName =$_REQUEST["location"];
 $locationhouseNo =$_REQUEST["houseNo"];
 $locationsoiName =$_REQUEST["soiName"];
 $locationsoi =$_REQUEST["soi"];
-$locationsubsoi =$_REQUEST["subSoi"];
 $locationroad =$_REQUEST["road"];
 $locationDistrict =$_REQUEST["district"];
 $locationProvince =$_REQUEST["province"];
@@ -41,7 +40,11 @@ $categoryID= $row["category_id"];
 // echo $locationContact." : contact<br>";
 // echo $locationPhone ." : phone<br>";
 // echo $locationimage." : image<br>";
-
+if($_REQUEST["subSoi"]==''){
+    $locationsubsoi ="";
+}else{
+    $locationsubsoi ="/".$_REQUEST["subSoi"];  
+}
 if($_REQUEST["id"]==""){
     if($locationimage!=''||$locationimage!='undefined'){
         $imgstatus=1;
@@ -50,7 +53,7 @@ if($_REQUEST["id"]==""){
     }
 $sql="INSERT INTO location (location_name,location_address, location_houseno,location_soi,location_soi_number,location_subsoi_number,location_road,location_District,location_Province,location_postno,location_area,location_img , location_count, location_contact_name, location_contact_phone, location_category_id,Location_isActive,location_update_id,location_create_id,location_update_time)
 VALUES ('$locationName',
-        '$locationhouseNo $locationsoiName $locationsoi/$locationsubsoi $locationroad $locationDistrict $locationProvince $locationpost',
+        '$locationhouseNo $locationsoiName $locationsoi$locationsubsoi $locationroad $locationDistrict $locationProvince $locationpost',
         '$locationhouseNo',
         '$locationsoiName',
         '$locationsoi',
@@ -79,7 +82,7 @@ if($locationimage!=''){
 
 $sql =  " UPDATE location
             SET location_name=          '$locationName',
-                location_address=       '$locationhouseNo $locationsoiName $locationsoi/$locationsubsoi $locationroad $locationDistrict $locationProvince $locationpost',
+                location_address=       '$locationhouseNo $locationsoiName $locationsoi$locationsubsoi $locationroad $locationDistrict $locationProvince $locationpost',
                 location_houseno=       '$locationhouseNo',
                 location_soi=           '$locationsoiName',
                 location_soi_number=    '$locationsoi',

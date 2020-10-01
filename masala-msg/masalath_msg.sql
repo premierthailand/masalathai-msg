@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 01, 2020 at 06:53 AM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.3.21
+-- Generation Time: Oct 01, 2020 at 09:06 AM
+-- Server version: 10.1.19-MariaDB
+-- PHP Version: 5.6.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -31,7 +30,7 @@ CREATE TABLE `category` (
   `category_id` int(10) NOT NULL,
   `category_name` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `category_isActive` tinyint(1) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -39,7 +38,13 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`category_id`, `category_name`, `category_isActive`, `timestamp`) VALUES
-(1, 'Hotel', 1, '2020-10-01 03:52:40');
+(1, 'Schools', 1, '2020-10-01 06:58:34'),
+(2, 'Hospitals and Clinics', 1, '2020-10-01 06:59:00'),
+(3, 'Condominiums', 1, '2020-10-01 06:59:00'),
+(4, 'Corporate Offices', 1, '2020-10-01 07:00:13'),
+(5, 'Restaurants', 1, '2020-10-01 07:00:13'),
+(6, 'Stores', 1, '2020-10-01 07:00:13'),
+(7, 'Salons', 1, '2020-10-01 07:00:13');
 
 -- --------------------------------------------------------
 
@@ -50,7 +55,7 @@ INSERT INTO `category` (`category_id`, `category_name`, `category_isActive`, `ti
 CREATE TABLE `issue` (
   `issue_id` int(10) NOT NULL,
   `issue_name` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -91,7 +96,7 @@ CREATE TABLE `location` (
   `location_update_id` int(10) NOT NULL,
   `location_create_id` int(10) NOT NULL,
   `location_update_time` datetime NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -112,7 +117,7 @@ INSERT INTO `location` (`location_id`, `location_name`, `location_address`, `loc
 (12, 'Riva Surya Bangkok', '23 Phra Athit Rd, Chana Songkhram, Phra Nakhon, Bangkok 10200', '', '', '', '', 'Phra Athit Rd', '', 'Bangkok', 10200, '', '', 5, '', '', 1, 1, 1, 1, '2001-10-20 10:00:00', '2001-10-20 03:00:00'),
 (13, 'State Tower (Le Bua) ', '1055 Silom Road, Bangrak, Bangkok 10500, Thailand', '', '', '', '', 'Silom Road', '', 'Bangkok', 10500, '', '', 5, '', '', 1, 1, 1, 1, '2001-10-20 10:00:00', '2001-10-20 03:00:00'),
 (14, 'The Siam Hotel', '3, 2 Khao Rd, Wachira Phayaban, Dusit District, Bangkok 10300', '', '', '', '', 'Khao Rd', '', 'Bangkok', 10300, '', '', 5, '', '', 1, 1, 1, 1, '2001-10-20 10:00:00', '2001-10-20 03:00:00'),
-(15, 'Ad Lib Sukhumvit', '230 5 Sukhumvit 1 Alley, Khlong Toei Nuea, Watthana, Bangkok 10110', '', '', '', '', 'Sukhumvit 1', '', 'Bangkok', 10110, 'Sukhumvit Soi 1', '', 5, '', '', 1, 1, 1, 1, '2001-10-20 10:00:00', '2001-10-20 03:00:00'),
+(15, 'Ad Lib Sukhumvit', '230 5 Sukhumvit 1 Sukhumvit Watthana Bangkok 10110', '230 5', 'Sukhumvit', '1', '', 'Sukhumvit', 'Watthana', 'Bangkok', 10110, 'Sukhumvit Soi 1', '', 1, '', '', 1, 1, 504, 1, '2001-10-20 10:00:00', '2020-10-01 06:57:28'),
 (16, 'Skyy Hotel', '88/8 Sukhumvit 1 Alley, Khlong Toei Nuea, Watthana, Bangkok 10110', '', '', '', '', 'Sukhumvit 1', '', 'Bangkok', 10110, 'Sukhumvit Soi 1', '', 5, '', '', 1, 1, 1, 1, '2001-10-20 10:00:00', '2001-10-20 03:00:00'),
 (17, 'Best Western Premier Sukhumvit', '78 Sukhumvit 1 Alley, Khlong Toei Nuea, Watthana, Bangkok 10110', '', '', '', '', 'Sukhumvit 1', '', 'Bangkok', 10110, 'Sukhumvit Soi 1', '', 5, '', '', 1, 1, 1, 1, '2001-10-20 10:00:00', '2001-10-20 03:00:00'),
 (18, 'Furama Xclusive Sukhumvit', '27 Sukhumvit 1 Alley, Klongtoey-Nua Watthana, Bangkok 10110', '', '', '', '', 'Sukhumvit 1', '', 'Bangkok', 10110, 'Sukhumvit Soi 1', '', 5, '', '', 1, 1, 1, 1, '2001-10-20 10:00:00', '2001-10-20 03:00:00'),
@@ -158,7 +163,7 @@ INSERT INTO `location` (`location_id`, `location_name`, `location_address`, `loc
 CREATE TABLE `magazinetype` (
   `magazineType_id` int(1) NOT NULL,
   `magazineType_name` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -181,7 +186,7 @@ CREATE TABLE `magazinevol` (
   `magazineVol_Month_id` int(2) NOT NULL,
   `magazineVol_Month` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `magazineVol_Year` int(4) NOT NULL,
-  `timpstamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `timpstamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -709,8 +714,17 @@ CREATE TABLE `messenger` (
   `messenger_name` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `messenger_phone` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `messenger_isActive` tinyint(1) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `messenger`
+--
+
+INSERT INTO `messenger` (`messenger_id`, `messenger_name`, `messenger_phone`, `messenger_isActive`, `timestamp`) VALUES
+(1, 'Moo', '', 1, '2020-10-01 07:00:43'),
+(2, 'Lung Ong', '', 1, '2020-10-01 07:01:05'),
+(3, 'Fluk', '', 1, '2020-10-01 07:01:05');
 
 -- --------------------------------------------------------
 
@@ -721,7 +735,7 @@ CREATE TABLE `messenger` (
 CREATE TABLE `role` (
   `role_id` int(1) NOT NULL,
   `role_name` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -752,7 +766,7 @@ CREATE TABLE `transection` (
   `transection_update_id` int(10) NOT NULL,
   `transection_create_id` int(10) NOT NULL,
   `transection_update_time` datetime NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -768,7 +782,7 @@ CREATE TABLE `user` (
   `user_password` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_isActive` tinyint(1) NOT NULL,
   `role_id` int(1) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -776,7 +790,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `user_name`, `user_username`, `user_password`, `user_isActive`, `role_id`, `timestamp`) VALUES
-(1, 'webDev', 'webDev', '5f4dcc3b5aa765d61d8327deb882cf99', 1, 1, '2020-10-01 03:54:55');
+(1, 'webDev', 'webDev', '5f4dcc3b5aa765d61d8327deb882cf99', 1, 1, '2020-10-01 07:05:54'),
+(2, 'admin', 'admin', '84a072ffaee96bde750a27d5d3e58555', 1, 3, '2020-10-01 07:02:25'),
+(3, 'manager', 'manager', '0795151defba7a4b5dfa89170de46277', 1, 2, '2020-10-01 07:02:39');
 
 --
 -- Indexes for dumped tables
@@ -844,57 +860,47 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `category_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
+  MODIFY `category_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `issue`
 --
 ALTER TABLE `issue`
   MODIFY `issue_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
 -- AUTO_INCREMENT for table `location`
 --
 ALTER TABLE `location`
   MODIFY `location_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
-
 --
 -- AUTO_INCREMENT for table `magazinetype`
 --
 ALTER TABLE `magazinetype`
   MODIFY `magazineType_id` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT for table `magazinevol`
 --
 ALTER TABLE `magazinevol`
   MODIFY `magazineVol_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=527;
-
 --
 -- AUTO_INCREMENT for table `messenger`
 --
 ALTER TABLE `messenger`
-  MODIFY `messenger_id` int(10) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `messenger_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
   MODIFY `role_id` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
 -- AUTO_INCREMENT for table `transection`
 --
 ALTER TABLE `transection`
-  MODIFY `transection_id` int(10) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `transection_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-COMMIT;
-
+  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

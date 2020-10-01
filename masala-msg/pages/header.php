@@ -121,12 +121,6 @@ if($_SESSION['username']==''OR $_SESSION['status']==''){
                     <i class="material-icons">arrow_drop_down</i>
                   </a>
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                    <a class="dropdown-item" href="#">
-                      Status :
-                      <?php
-                      echo $_SESSION['status'];
-                      ?>
-                    </a>
                     <a class="dropdown-item" href="logout">Log out</a>
                   </div>
                 </li>
